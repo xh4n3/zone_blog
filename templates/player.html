@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Player</title>
+    </head>
+    <body>
+        {{ song.name }}
+        <audio controls>
+            <source autoplay="autoplay" src="{{ song.url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </body>
+</html>
