@@ -6,3 +6,6 @@
     display: inline-block;
     color: #BDBDBD !important;
 }
+.ui.form {
+    line-height: 2rem;
+}

@@ -4,25 +4,23 @@
 
 <title>[[ songname ]]</title>
 
-<link rel="stylesheet" type="text/css" href="./static/semantic.min.css">
-<link rel="stylesheet" type="text/css" href="./static/index.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
-<script src="./static/indexCtrl.js"></script>
-<script src="./static/semantic.min.js"></script>
-<script>
-
-</script>
+<script src="{{ url_for('static', filename='global.js') }}"></script>
+<script src="{{ url_for('static', filename='indexCtrl.js') }}"></script>
+<script src="{{ url_for('static', filename='semantic.min.js') }}"></script>
 
 </head>
     <body>
 <div class="ui page grid">
     <div class="row"></div>
     <div class="row">
-        <div class="logo">
+        <a class="logo" href="{{ url_for('index') }}">
             <h1 class="ui header">Zone</h1>
             <h5 class="ui header">beta</h5>
-        </div>
+        </a>
     </div>
     <div class="row">
         <div class="ten wide column">
@@ -69,10 +67,9 @@
         
         <div class="six wide column">
             <div>
-            <div class="ui small input">
-  <input type="text" ng-model="keyword" placeholder="Search...">
-</div>
-                <input ng-click="search()" type="submit"/>
+                <div class="ui form">
+  <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+                    </div>
                 <br/>
                 <div ng-show="keyword">Searching for [[ keyword ]]</div>
               
