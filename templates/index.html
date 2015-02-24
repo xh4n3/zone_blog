@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="zoneApp">
+<html ng-app="zoneApp" ng-controller="zoneCtrl">
 <head>
 
-<title>{{ index.title }}</title>
+<title>[[ songname ]]</title>
 
 <link rel="stylesheet" type="text/css" href="./static/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="./static/index.css">
@@ -68,7 +68,7 @@
         </div>
         
         <div class="six wide column">
-            <div ng-controller="zoneCtrl">
+            <div>
             <div class="ui small input">
   <input type="text" ng-model="keyword" placeholder="Search...">
 </div>
@@ -87,7 +87,7 @@
           [[ song['artists'][0]['name'] ]]
       </td>
                         <td class="collapsing">
-                            <a ng-click="geturl(song['mp3Url'])" ng-init="songurl=''">
+                            <a ng-click="select(song)" ng-init="songurl=''">
                             <i class="play icon"></i>
                                 </a>
       </td>

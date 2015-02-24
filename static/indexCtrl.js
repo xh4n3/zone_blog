@@ -23,7 +23,8 @@ myApp.controller('zoneCtrl', ['$scope','$http',function($scope, $http) {
             $scope.json=data;
         })
     };
-    $scope.geturl = function(url) {
-        $scope.songurl=url;
+    $scope.select = function(song) {
+        $scope.songurl=song['mp3Url'];
+        $scope.songname=song['name'];
     };
   }]);
