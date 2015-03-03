@@ -5,7 +5,7 @@ from search import Search
 from model import *
 import datetime
 import json
-
+from bson import json_util
 
 app = Flask(__name__)
 
@@ -29,8 +29,8 @@ def search():
         return "NONE"
     return render_template('player.html',song=target.fetch(keyword,1,0))
 
-@app.route('/getjson', methods=['POST'])
-def getjson():
+@app.route('/search/json', methods=['POST'])
+def search_json():
     keyword = request.data
     para=json.loads(keyword)['keyword']
     c_log('search',para).save()
@@ -39,15 +39,19 @@ def getjson():
         return "NONE"
     return target.fetch(para,3,1) # keyword limit isjson
 
+@app.route('/post/json', methods=['GET'])
+def post_json():
+    return c_articles.objects.all().to_json()
+
 @app.route("/post/new")
 def post():
     return render_template('post.html')
 
 @app.route("/post/save", methods=['POST'])
-def postsave():
+def post_save():
     rawcontent = request.data
     content=json.loads(rawcontent)
-    c_articles(content['title'],content['body']).save()
+    c_articles(content['title'],'heart',content['body']).save()
     return 'Success'
 
 

@@ -14,3 +14,4 @@ var myApp = angular.module('zoneApp', [], function($interpolateProvider) {
     'http://myapp.example.com/clickThru**'
   ]);
 });
+
