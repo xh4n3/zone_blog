@@ -14,10 +14,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("/music")
-def music():
-    return render_template('music.html')
-
 @app.route('/player', methods=['POST'])
 def search():
     keyword = request.form['keyword']
@@ -41,7 +37,7 @@ def search_json():
 
 @app.route('/post/json', methods=['GET'])
 def post_json():
-    return c_articles.objects.all().to_json()
+    return c_articles.objects.order_by('-created_at').all().to_json()
 
 @app.route("/post/new")
 def post():
