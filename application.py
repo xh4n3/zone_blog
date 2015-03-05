@@ -14,6 +14,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/homepage.html')
+def homepage():
+    return render_template('homepage.html')
+
+@app.route('/postshow.html')
+def postshow():
+    return render_template('postshow.html')
+
 @app.route('/player', methods=['POST'])
 def search():
     keyword = request.form['keyword']

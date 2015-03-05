@@ -1,0 +1,50 @@
+
+<div class="ui grid page">
+
+        <div class="ten wide column">
+            <table class="ui celled striped table">
+                <tbody>
+                    <tr ng-repeat="post in posts">
+                          <td class="collapsing">
+        <i class="heart icon"></i>
+      </td>
+      <td><a href="/#/post/[[ post._id['$oid'] ]]">[[ post.title ]]</a></td>
+      <td class="right aligned collapsing">[[ post.created_at['$date'] | fromNow ]]</td>
+                    </tr>
+  </tbody>
+</table>
+        </div>
+        
+        <div class="six wide column">
+            <div>
+                <div class="ui form">
+  <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+                    </div>
+                <br/>
+                <div ng-show="keyword">Searching for [[ keyword ]]</div>
+              
+        <table class="ui celled striped table">
+            <tbody>
+                <tr ng-repeat="song in json['result']['songs']">
+                    
+      <td class="collapsing">
+        [[ song['name'] ]]
+      </td>
+    <td class="collapsing">
+          [[ song['artists'][0]['name'] ]]
+      </td>
+                        <td class="collapsing">
+                            <a ng-click="select(song)" ng-init="songurl=''">
+                            <i class="play icon"></i>
+                                </a>
+      </td>
+                    </tr>
+            </tbody>
+          </table>  
+<audio controls ng-if="songurl" class="audio">  
+    <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
+    Your browser does not support the audio element.
+                </audio>
+</div>
+        </div>
+</div>
