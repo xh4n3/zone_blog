@@ -22,9 +22,13 @@ myApp.config(['$routeProvider',
         templateUrl: 'homepage.html',
         controller: 'homepageCtrl'
       }).
-      when('/post/:postid', {
+      when('/post/id/:postid', {
         templateUrl: 'postshow.html',
         controller: 'postshowCtrl'
+      }).
+      when('/post/new', {
+        templateUrl: 'postnew.html',
+        controller: 'postnewCtrl'
       }).
       otherwise({
         redirectTo: '/'

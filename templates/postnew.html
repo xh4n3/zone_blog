@@ -1,0 +1,35 @@
+<div class="ui grid page">
+    <div class="row">
+        <div class="ten wide column">
+            <div class="ui form">
+                <div class="ui  menu right floated">
+                    <div class="ui simple dropdown item">
+
+                        <i class="[[ category ]] icon"></i> [[ category ]]
+                        <div class="menu">
+                            <div class="item" ng-click="select('heart')"><i class="heart icon"></i>heart</div>
+                            <div class="item" ng-click="select('code')"><i class="code icon"></i>code</div>
+                            <div class="item" ng-click="select('student')"><i class="student icon"></i>student</div>
+                            <div class="item" ng-click="select('lemon')"><i class="lemon icon"></i>lemon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Title</label>
+                    <input type="text" value="" ng-model="title" />
+                </div>
+                <div class="field">
+                    <label>Body</label>
+                    <textarea ng-model="body"></textarea>
+                </div>
+                <div class="ui primary button" ng-click="post(title,body)">
+                    Save
+                </div>
+                <div class="ui button">
+                    Discard
+                </div>
+            </div>
+            [[ status ]]
+        </div>
+    </div>
+</div>

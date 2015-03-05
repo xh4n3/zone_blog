@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="zoneApp">
 <head>
-
-<title>[[ songname ]]</title>
-
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
-<script src="{{ url_for('static', filename='jquery-latest.min.js') }}"></script>
-<script src="{{ url_for('static', filename='angular.min.js') }}"></script>
-<script src="{{ url_for('static', filename='angular-route.js') }}"></script>
-<script src="{{ url_for('static', filename='moment-with-locales.js') }}"></script>
-<script src="{{ url_for('static', filename='semantic.min.js') }}"></script>
-<script src="{{ url_for('static', filename='app.js') }}"></script>
-<script src="{{ url_for('static', filename='controllers.js') }}"></script>
+    <title>[[ songname ]]</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='jquery-latest.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='angular.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='angular-route.js') }}"></script>
+    <script src="{{ url_for('static', filename='moment-with-locales.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='controllers.js') }}"></script>
 </head>
 <body>
-<div class="ui page grid">
-    <div class="row"></div>
-    <div class="row">
-        <a class="logo" href="/#{{ url_for('index') }}">
-            <h1 class="ui header">Zone</h1>
-            <h5 class="ui header">beta</h5>
-        </a>
+    <div class="ui page grid">
+        <div class="row"></div>
+        <div class="row">
+            <a class="logo" href="#{{ url_for('index') }}">
+                <h1 class="ui header">Zone</h1>
+                <h5 class="ui header">beta</h5>
+            </a>
+        </div>
     </div>
-</div>
-<div ng-view></div>
-
+    <div ng-view></div>
 </body>
-
 </html>
-
-

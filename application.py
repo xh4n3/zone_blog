@@ -22,6 +22,10 @@ def homepage():
 def postshow():
     return render_template('postshow.html')
 
+@app.route("/postnew.html")
+def postnew():
+    return render_template('postnew.html')
+
 @app.route('/player', methods=['POST'])
 def search():
     keyword = request.form['keyword']
@@ -47,9 +51,7 @@ def search_json():
 def post_json():
     return c_articles.objects.order_by('-created_at').all().to_json()
 
-@app.route("/post/new")
-def post():
-    return render_template('post.html')
+
 
 @app.route("/post/save", methods=['POST'])
 def post_save():
