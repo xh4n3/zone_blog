@@ -4,7 +4,7 @@ angular.module('markdown',[]).config(function (markdownProvider) {
     });
 });
 
-var myApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
+var myApp = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }).config(function ($sceDelegateProvider) {
@@ -24,8 +24,8 @@ myApp.config(['$routeProvider',
               function ($routeProvider) {
         $routeProvider.
         when('/', {
-            templateUrl: 'home',
-            controller: 'homepageCtrl'
+            templateUrl: '/admin/index',
+            controller: 'adminCtrl'
         }).
         when('/post/id/:postid', {
             templateUrl: '/post/show',
@@ -52,4 +52,4 @@ myApp.filter('fromNow', function () {
         return moment(date).fromNow();
     }
 });
-b
+

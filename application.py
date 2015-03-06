@@ -21,9 +21,17 @@ def homepage():
 def postshow():
     return render_template('postshow.html')
 
-@app.route("/post/new")
-def postnew():
-    return render_template('postnew.html')
+@app.route("/post/edit")
+def postedit():
+    return render_template('postedit.html')
+
+@app.route("/admin")
+def admin():
+    return render_template('admin.html')
+
+@app.route("/admin/index")
+def admin_index():
+    return render_template('admin_index.html')
 
 @app.route('/post/json', methods=['GET'])
 def post_json():
@@ -39,6 +47,18 @@ def post_save():
     content=json.loads(rawcontent)
     c_articles(content['title'],content['category'],content['body']).save()
     return 'Success'
+
+@app.route("/post/save/<postid>", methods=['POST'])
+def post_update(postid):
+    rawcontent = request.data
+    content=json.loads(rawcontent)
+    c_articles.objects(id=postid).update(set__title=content['title'],set__category=content['category'],set__body=content['body'])
+    return 'Post ' + postid + ' modified'
+
+@app.route("/post/delete/<postid>")
+def post_delete(postid):
+    c_articles.objects(id=postid).first().delete()
+    return 'Post ' + postid + ' deleted'
 
 @app.route('/search/json', methods=['POST'])
 def search_json():
@@ -68,6 +88,5 @@ def search():
 
 if __name__ == "__main__":
     app.run(debug=True)
-    #app.run(host='0.0.0.0')
 
 

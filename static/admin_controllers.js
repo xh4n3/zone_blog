@@ -19,7 +19,6 @@ homepageCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $h
         $scope.songurl = song['mp3Url'];
         $scope.songname = song['name'];
     };
-
   }]);
 homepageCtrl.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
 
@@ -42,13 +41,13 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', function ($scope, $http
         $scope.songname = song['name'];
     };
     $scope.delete = function (postid) {
-            $http.get('/post/delete/'+postid, {})
-                .success(function (data) {
+        $http.get('/post/delete/' + postid, {})
+            .success(function (data) {
                 $scope.json = data;
             })
-            
+
     };
-    
+
 
   }]);
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
@@ -84,7 +83,7 @@ homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', func
         $scope.category = data[0]['category'];
     });
     $scope.post = function () {
-        $http.post('/post/save/'+$scope.postid, {
+        $http.post('/post/save/' + $scope.postid, {
             title: $scope.title,
             category: $scope.category,
             body: $scope.body

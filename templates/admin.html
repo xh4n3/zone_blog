@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="zoneAdmin">
+
+<head>
+    <title>Admin | xh4n3</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='jquery-latest.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='angular.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='angular-route.js') }}"></script>
+    <script src="{{ url_for('static', filename='moment-with-locales.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_app.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_controllers.js') }}"></script>
+    <script src="{{ url_for('static', filename='showdown.js') }}"></script>
+    <script src="{{ url_for('static', filename='markdown.js') }}"></script>
+</head>
+
+<body>
+    <div class="ui grid page">
+        <div class="row"></div>
+        <div class="ten wide column">
+            <a class="ui red header" href="#/">Admin Panel</a>
+        </div>
+    </div>
+    <div ng-view></div>
+</body>
+
+</html>
