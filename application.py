@@ -37,7 +37,7 @@ def post_content(postid):
 def post_save():
     rawcontent = request.data
     content=json.loads(rawcontent)
-    c_articles(content['title'],'heart',content['body']).save()
+    c_articles(content['title'],content['category'],content['body']).save()
     return 'Success'
 
 @app.route('/search/json', methods=['POST'])

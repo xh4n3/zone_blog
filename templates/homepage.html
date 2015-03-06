@@ -1,17 +1,19 @@
 <div class="ui grid page">
     <div class="ten wide column">
-        <table class="ui celled striped table">
+        <a href="#/post/new">New Post</a>
+        <table class="ui striped table">
             <tbody>
                 <tr ng-repeat="post in posts">
                     <td class="collapsing">
-                        <i class="heart icon"></i>
+                        <i class="ui [[ post.category ]] icon"></i>
                     </td>
-                    <td><a href="#/post/id/[[ post._id['$oid'] ]]">[[ post.title ]]</a>
+                    <td><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
                     </td>
-                    <td class="right aligned collapsing">[[ post.created_at['$date'] | fromNow ]]</td>
+                    <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
                 </tr>
             </tbody>
         </table>
+        
     </div>
     <div class="six wide column">
         <div>

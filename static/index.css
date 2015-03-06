@@ -9,3 +9,13 @@
 .ui.form {
     line-height: 2rem;
 }
+
+body {
+    background-color: #faf9f6 !important;
+}
+.color {
+    color: #2C3E50 !important;
+}
+.font {
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+}

@@ -5,7 +5,7 @@ connect('blog')
 
 class c_articles(Document):
     title = StringField(max_length=255, required=True)
-    icon = StringField(required=True)
+    category = StringField(required=True)
     body = StringField(required=True)
     created_at = DateTimeField(default=datetime.datetime.now)
     comments = ListField(EmbeddedDocumentField('c_comment'))

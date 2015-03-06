@@ -33,10 +33,11 @@ homepageCtrl.controller('postnewCtrl', ['$scope', '$http', function ($scope, $ht
     $scope.title = '';
     $scope.body = '';
     $scope.category = 'archive';
-    $scope.post = function (title, body) {
+    $scope.post = function () {
         $http.post('/post/save', {
-            title: title,
-            body: body
+            title: $scope.title,
+            category: $scope.category,
+            body: $scope.body
         }).success(function (data) {
             $scope.status = data;
         })
