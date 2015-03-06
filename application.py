@@ -31,7 +31,7 @@ def post_json():
 
 @app.route('/post/<postid>')
 def post_content(postid):
-    return c_articles.objects(id=postid).order_by('-created_at').all().to_json()
+    return c_articles.objects(id=postid).all().to_json()
 
 @app.route("/post/save", methods=['POST'])
 def post_save():
