@@ -19,18 +19,18 @@ myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'homepage.html',
+        templateUrl: 'home',
         controller: 'homepageCtrl'
       }).
       when('/post/id/:postid', {
-        templateUrl: 'postshow.html',
+        templateUrl: '/post/show',
         controller: 'postshowCtrl'
       }).
       when('/post/new', {
-        templateUrl: 'postnew.html',
+        templateUrl: '/post/new',
         controller: 'postnewCtrl'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/error'
       });
   }]);

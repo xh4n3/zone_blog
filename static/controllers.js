@@ -18,10 +18,12 @@ homepageCtrl.controller('homepageCtrl', ['$scope','$http',function($scope, $http
     };
     
   }]);
-homepageCtrl.controller('postshowCtrl', ['$scope','$routeParams','$http',function($scope, $routeParams) {
+homepageCtrl.controller('postshowCtrl', ['$scope','$routeParams','$http',function($scope, $routeParams,$http) {
     $scope.postid = $routeParams.postid;
+    $http.get('/post/'+$scope.postid).success(function(data){
+            $scope.post=data;
+        });
     }]);
-
 homepageCtrl.controller('postnewCtrl', ['$scope','$http',function($scope, $http) {
 
     $scope.title ='';
