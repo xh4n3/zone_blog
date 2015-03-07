@@ -3,21 +3,24 @@
         <a href="#/post/new">New Post</a>
         <table class="ui striped table">
             <tbody>
-                <tr ng-repeat="post in posts">
+                <tr ng-repeat="post in posts" ng-mouseenter="show=true" ng-mouseleave="show=false">
                     <td class="collapsing">
                         <i title="[[ post.category ]]" class="ui [[ post.category ]] icon"></i>
                     </td>
                     <td><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
                     </td>
                     <td class="collapsing">
+                        <div ng-if="show">
                         <a title="edit" href="#/post/edit/[[ post._id['$oid'] ]]">
                             <i class="ui blue edit icon"></i>
                         </a>
                         <i class="ui link black lock icon"></i>
                         <i class="ui link green unlock icon"></i>
                         <a title="delete" ng-click="delete([[ post._id['$oid'] ]])">
-                            <i class="ui link red remove icon"></i>
+                            <i ng-if="!deleting" class="ui link red trash icon"></i>
+                            <i ng-if="deleting" class="help red loading icon"></i>
                         </a>
+                            </div>
                     </td>
                     <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
                 </tr>

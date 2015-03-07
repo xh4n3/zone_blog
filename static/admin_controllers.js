@@ -20,10 +20,11 @@ homepageCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $h
         $scope.songname = song['name'];
     };
   }]);
-homepageCtrl.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
+homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
 
     $scope.keyword = '';
     $scope.songurl = '';
+    $scope.deleting=false;
     $http.get('/post/json').success(function (data) {
         $scope.posts = data;
     });
@@ -41,11 +42,15 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', function ($scope, $http
         $scope.songname = song['name'];
     };
     $scope.delete = function (postid) {
-        $http.get('/post/delete/' + postid, {})
-            .success(function (data) {
-                $scope.json = data;
-            })
-
+        if ($scope.deleting == true) {
+            $http.get('/post/delete/' + postid, {})
+                .success(function (data) {
+                    $scope.json = data;
+                    $route.reload();
+                })
+        } else {
+            $scope.deleting = true;
+        }
     };
 
 
