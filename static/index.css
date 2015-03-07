@@ -19,3 +19,8 @@ body {
 .font {
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
+
+.bottom {
+    position: absolute;
+    bottom: 1rem !important;
+}
