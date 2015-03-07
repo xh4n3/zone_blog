@@ -1,6 +1,6 @@
-<div class="ui stackable grid page">
+<div class="ui grid page">
     <div class="ten wide column">
-        <table class="ui striped table">
+        <table class="ui unstackable striped celled table">
             <tbody>
                 <tr ng-repeat="post in posts">
                     <td class="collapsing">
@@ -12,7 +12,48 @@
                 </tr>
             </tbody>
         </table>
-        
+    </div>
+      <div class="sixteen wide column">
+        <table class="ui unstackable table">
+            <tbody>
+                <tr ng-repeat="post in posts">
+                    <td class="one wide">
+                        <i class="ui [[ post.category ]] icon"></i>
+                    </td>
+                    <td class="collapsing"><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
+                    </td>
+                    <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="sixteen wide column">
+    <table class="ui unstackable table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th class="right aligned">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="center aligned">
+      <td>John</td>
+      <td>Approved</td>
+      <td class="right aligned">None</td>
+    </tr>
+    <tr>
+      <td>Jamie</td>
+      <td>Approved</td>
+      <td class="right aligned">Requires call</td>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Denied</td>
+      <td class="right aligned">None</td>
+    </tr>
+  </tbody>
+</table>
     </div>
     <div class="six wide computer tablet only column">
         <div>
