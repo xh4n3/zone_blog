@@ -1,11 +1,24 @@
-.logo h1{
+.computer_logo h1{
     display: inline-block;
     color: #33CCFF !important;
 }
-.logo h5{
+.computer_logo h5{
     display: inline-block;
     color: #BDBDBD !important;
 }
+.tablet_mobile a{
+    position: absolute !important;
+    top:0 !important;
+}
+.tablet_mobile h1{
+    display: inline-block;
+    color: #33CCFF !important;
+}
+.tablet_mobile h5{
+    display: inline-block;
+    color: #BDBDBD !important;
+}
+
 .ui.form {
     line-height: 2rem;
 }
