@@ -1,6 +1,6 @@
 <div class="ui grid page">
-    <div class="ten wide column">
-        <table class="ui unstackable striped celled table">
+    <div class="ten wide computer tablet only column">
+        <table class="ui unstackable striped table">
             <tbody>
                 <tr ng-repeat="post in posts">
                     <td class="collapsing">
@@ -13,8 +13,37 @@
             </tbody>
         </table>
     </div>
-      <div class="sixteen wide column">
-        <table class="ui unstackable table">
+    <div class="six wide computer tablet only column">
+        <div class="ui form">
+            <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+        </div>
+        <br/>
+        <div ng-show="keyword">Searching for [[ keyword ]]</div>
+        <table class="ui celled striped table">
+            <tbody>
+                <tr ng-repeat="song in json['result']['songs']">
+
+                    <td class="collapsing">
+                        [[ song['name'] ]]
+                    </td>
+                    <td class="collapsing">
+                        [[ song['artists'][0]['name'] ]]
+                    </td>
+                    <td class="collapsing">
+                        <a ng-click="select(song)" ng-init="songurl=''">
+                            <i class="play icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <audio controls ng-if="songurl" class="audio">
+            <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div class="sixteen wide mobile only column">
+        <table class="ui unstackable striped table">
             <tbody>
                 <tr ng-repeat="post in posts">
                     <td class="one wide">
@@ -26,64 +55,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-        <div class="sixteen wide column">
-    <table class="ui unstackable table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th class="right aligned">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="center aligned">
-      <td>John</td>
-      <td>Approved</td>
-      <td class="right aligned">None</td>
-    </tr>
-    <tr>
-      <td>Jamie</td>
-      <td>Approved</td>
-      <td class="right aligned">Requires call</td>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Denied</td>
-      <td class="right aligned">None</td>
-    </tr>
-  </tbody>
-</table>
-    </div>
-    <div class="six wide computer tablet only column">
-        <div>
-            <div class="ui form">
-                <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
-            </div>
-            <br/>
-            <div ng-show="keyword">Searching for [[ keyword ]]</div>
-            <table class="ui celled striped table">
-                <tbody>
-                    <tr ng-repeat="song in json['result']['songs']">
-
-                        <td class="collapsing">
-                            [[ song['name'] ]]
-                        </td>
-                        <td class="collapsing">
-                            [[ song['artists'][0]['name'] ]]
-                        </td>
-                        <td class="collapsing">
-                            <a ng-click="select(song)" ng-init="songurl=''">
-                                <i class="play icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <audio controls ng-if="songurl" class="audio">
-                <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
-                    Your browser does not support the audio element.
-            </audio>
-        </div>
     </div>
 </div>

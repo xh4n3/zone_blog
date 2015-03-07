@@ -26,16 +26,10 @@
             </a>
         </div>
         <div class="tablet mobile only row">
-            <div class="tablet_mobile one wide left floated center aligned column">
-                <a href="#{{ url_for('index') }}">
-                    <h2>
-                <i class="ui black content icon"></i></h2>
-                </a>
-            </div>
-            <div class="tablet_mobile ten wide centered center aligned column">
+            <a href="#{{ url_for('index') }}" class="tablet_mobile ten wide centered center aligned column">
                 <h1 class="ui header">Zone</h1>
                 <h5 class="ui header">beta</h5>
-            </div>
+            </a>
         </div>
     </div>
     <div ng-view></div>
