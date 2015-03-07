@@ -1,8 +1,35 @@
 <div class="ui grid page">
-    <div class="row">
+    <div class="row"></div>
+    <div class="computer tablet only row">
         <div class="ten wide column">
-            <h2 class="ui header font color">[[ title ]]</h2>
-            <div ng-bind-html="html | markdown"></div>
+            <div class="row">
+                <i class="[[ category ]] icon"></i> [[ category ]] &nbsp;&nbsp;
+                <span class="ui header huge font color">[[ title ]]</span>
+            </div>
+        </div>
+    </div>
+    <div class="computer tablet only row">
+        <div class="one wide column"></div>
+        <div class="ten wide column">
+            <div class="row">
+                <div ng-bind-html="html | markdown"></div>
+            </div>
+        </div>
+    </div>
+        <div class="mobile only row">
+        <div class="sixteen wide column">
+            <div class="row">
+                <i class="[[ category ]] icon"></i>&nbsp;&nbsp;
+                <span class="ui header huge font color">[[ title ]]</span>
+            </div>
+        </div>
+    </div>
+    <div class="mobile only row">
+        <div class="one wide column"></div>
+        <div class="fifteen wide column">
+            <div class="row">
+                <div ng-bind-html="html | markdown"></div>
+            </div>
         </div>
     </div>
 </div>

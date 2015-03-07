@@ -52,4 +52,3 @@ myApp.filter('fromNow', function () {
         return moment(date).fromNow();
     }
 });
-b

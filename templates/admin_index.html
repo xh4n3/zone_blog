@@ -1,6 +1,6 @@
 <div class="ui grid page">
     <div class="row"></div>
-        <div class="row">
+        <div class="computer tablet only row">
         <div class="eight wide column">
         <a href="#/post/new"><i class="ui add square icon"></i>New Post</a>
             </div>
@@ -8,8 +8,8 @@
         <a href="/"><i class="ui sign out icon"></i>Exit</a>
     </div>
             </div>
-        <div class="ten wide column">
-        <table class="ui striped table">
+        <div class="computer tablet only ten wide column">
+        <table class="ui unstackable striped table">
             <tbody>
                 <tr ng-repeat="post in posts" ng-mouseenter="show=true" ng-mouseleave="show=false">
                     <td class="collapsing">
@@ -25,7 +25,7 @@
                         <i class="ui link black lock icon"></i>
                         <i class="ui link green unlock icon"></i>
                         <a title="delete" ng-click="delete([[ post._id['$oid'] ]])">
-                            <i ng-if="!deleting" class="ui link red trash icon"></i>
+                            <i ng-if="!deleting" class="ui link red remove icon"></i>
                             <i ng-if="deleting" class="help link red loading icon"></i>
                         </a>
                             </div>

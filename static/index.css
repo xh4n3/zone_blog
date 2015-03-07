@@ -1,22 +1,37 @@
-.computer_logo h1{
+.computer_logo h1 {
     display: inline-block;
     color: #33CCFF !important;
 }
-.computer_logo h5{
+
+.computer_logo h5 {
     display: inline-block;
     color: #BDBDBD !important;
 }
-.tablet_mobile a{
+
+.tablet_mobile a {
     position: absolute !important;
-    top:0 !important;
+    top: 0 !important;
 }
-.tablet_mobile h1{
+
+.tablet_mobile h1 {
     display: inline-block;
     color: #33CCFF !important;
 }
-.tablet_mobile h5{
+
+.tablet_mobile h5 {
     display: inline-block;
     color: #BDBDBD !important;
+}
+
+img {
+    /* in case of overflowing in markdown */
+    
+    width: 100%;
+    height: auto;
+}
+
+textarea {
+    min-height: 25rem !important;
 }
 
 .ui.form {
@@ -26,14 +41,22 @@
 body {
     background-color: #faf9f6 !important;
 }
+
 .color {
     color: #2C3E50 !important;
 }
+
 .font {
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
 
 .bottom {
-    position: absolute;
     bottom: 1rem !important;
+}
+
+.stuck {
+    /* for sticky editor */
+    
+    position: fixed;
+    top: 0;
 }

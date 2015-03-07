@@ -1,7 +1,7 @@
 <div class="ui grid page">
     <div class="row">
         <div class="eight wide column">
-            <div class="ui form">
+            <div class="ui form editor" ng-sticky>
                 <div class="ui menu right floated">
                     <div class="ui simple dropdown item">
                         <i class="[[ category ]] icon"></i> [[ category ]]
@@ -24,18 +24,20 @@
                 <div class="ui primary button" ng-click="post()">
                     Save
                 </div>
-                <div class="ui button">
+                <div class="ui button" ng-click="discard()">
                     Discard
                 </div>
+                [[ status ]]
             </div>
-            [[ status ]]
+
         </div>
         <div class="ui vertical divider">></div>
         <div class="eight wide column">
             <div class="row">
-            <i class="[[ category ]] icon"></i> [[ category ]]
+                <i class="[[ category ]] icon"></i>[[ category ]]&nbsp;&nbsp;
+                <span class="ui header huge font color">[[ title ]]</span>
             </div>
-            <h2 class="ui header font color">[[ title ]]</h2>
+            <div class="ui horizantal divider"></div>
             <div ng-bind-html="body | markdown"></div>
         </div>
     </div>
