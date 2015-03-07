@@ -1,8 +1,8 @@
 <div class="ui grid page">
     <div class="row">
-        <div class="ten wide column">
+        <div class="eight wide column">
             <div class="ui form">
-                <div class="ui  menu right floated">
+                <div class="ui menu right floated">
                     <div class="ui simple dropdown item">
                         <i class="[[ category ]] icon"></i> [[ category ]]
                         <div class="menu">
@@ -29,6 +29,14 @@
                 </div>
             </div>
             [[ status ]]
+        </div>
+        <div class="ui vertical divider">></div>
+        <div class="eight wide column">
+            <div class="row">
+            <i class="[[ category ]] icon"></i> [[ category ]]
+            </div>
+            <h2 class="ui header font color">[[ title ]]</h2>
+            <div ng-bind-html="body | markdown"></div>
         </div>
     </div>
 </div>
