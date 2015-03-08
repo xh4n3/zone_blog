@@ -1,5 +1,5 @@
 from flask import Flask,render_template
-from flask import request,redirect
+from flask import request,redirect,session,url_for
 from mongoengine import connect
 from search import Search
 from model import *
@@ -31,7 +31,16 @@ def admin():
 
 @app.route("/admin/index")
 def admin_index():
-    return render_template('admin_index.html')
+    if 'username' in session:
+        return render_template('admin_index.html')
+    return redirect(url_for('admin_login'))
+
+@app.route("/admin/login",methods=['GET','POST'])
+def admin_login():
+    if request.method == 'POST':
+        session['username']=request.form['username']
+        return redirect(url_for('admin'))
+    return render_template('admin_login.html')
 
 @app.route('/post/json', methods=['GET'])
 def post_json():
@@ -87,6 +96,7 @@ def search():
     return render_template('player.html',song=target.fetch(keyword,1,0))
 
 if __name__ == "__main__":
+    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
     app.run(debug=True)
 
 

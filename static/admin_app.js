@@ -27,6 +27,7 @@ myApp.config(['$routeProvider',
             templateUrl: '/admin/index',
             controller: 'adminCtrl'
         }).
+
         when('/post/id/:postid', {
             templateUrl: '/post/show',
             controller: 'postshowCtrl'

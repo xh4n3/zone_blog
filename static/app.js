@@ -49,6 +49,6 @@ myApp.config(['$routeProvider',
   }]);
 myApp.filter('fromNow', function () {
     return function (date) {
-        return moment(date).fromNow();
+        return moment(date).zone(480).fromNow();
     }
 });
