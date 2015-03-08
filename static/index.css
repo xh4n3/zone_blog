@@ -34,6 +34,46 @@ textarea {
     min-height: 25rem !important;
 }
 
+audio {
+    width: 100% !important;
+}
+.resizing {
+    /* for preview on homepage */
+    
+    overflow: hidden;
+    max-height: 15rem !important;
+    line-height: 1rem !important;
+}
+
+.readmore {
+    /* for preview on homepage */
+    
+    line-height: 1rem !important;
+    margin-bottom: 1rem !important;
+    margin-top: 1rem !important;
+}
+
+hr {
+    /* gray horizantol line */
+    
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 1em 0;
+    padding: 0;
+}
+
+a {
+    line-height: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.inline {
+    display: inline-block;
+}
+
 .ui.form {
     line-height: 2rem;
 }
@@ -48,6 +88,12 @@ body {
 
 .font {
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+}
+
+.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
 }
 
 .bottom {

@@ -1,46 +1,61 @@
 <div class="ui grid page">
-    <div class="ten wide computer tablet only column">
-        <table class="ui unstackable striped table">
-            <tbody>
-                <tr ng-repeat="post in posts">
-                    <td class="collapsing">
-                        <i class="ui [[ post.category ]] icon"></i>
-                    </td>
-                    <td><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
-                    </td>
-                    <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="six wide computer tablet only column">
-        <div class="ui form">
-            <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+    <div class="three wide computer only column">
+        <div class="row">
+            <br>
+            <br>
         </div>
-        <br/>
-        <div ng-show="keyword">Searching for [[ keyword ]]</div>
-        <table class="ui celled striped table">
-            <tbody>
-                <tr ng-repeat="song in json['result']['songs']">
+        <div class="row">
+            <div class="ui form">
+                <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+            </div>
+            <br/>
+            <div ng-show="keyword">Searching for [[ keyword ]]</div>
+            <table class="ui celled striped table">
+                <tbody>
+                    <tr ng-repeat="song in json['result']['songs']">
 
-                    <td class="collapsing">
-                        [[ song['name'] ]]
-                    </td>
-                    <td class="collapsing">
-                        [[ song['artists'][0]['name'] ]]
-                    </td>
-                    <td class="collapsing">
-                        <a ng-click="select(song)" ng-init="songurl=''">
-                            <i class="play icon"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <audio controls ng-if="songurl" class="audio">
-            <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
-                Your browser does not support the audio element.
-        </audio>
+                        <td class="collapsing">
+                            [[ song['name'] ]]
+                        </td>
+                        <td class="collapsing">
+                            [[ song['artists'][0]['name'] ]]
+                        </td>
+                        <td class="collapsing">
+                            <a ng-click="select(song)" ng-init="songurl=''">
+                                <i class="play icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <audio controls ng-if="songurl" class="audio">
+                <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
+                    Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+    <div class="thirteen wide computer only column">
+        <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
+            <h1 class="ui center aligned header font color">[[ post.title ]]</h1>
+            <div ng-bind-html="post.body | markdown" class="resizing">
+            </div>
+            <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
+            <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
+            <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
+            <hr/>
+        </div>
+    </div>
+    <div class="sixteen wide tablet only column">
+        <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
+            <h1 class="ui center aligned header font color">[[ post.title ]]</h1>
+            <div ng-bind-html="post.body | markdown" class="resizing">
+            </div>
+            <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
+            <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
+            <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
+            <hr/>
+
+        </div>
     </div>
     <div class="sixteen wide mobile only column">
         <table class="ui unstackable striped table">
