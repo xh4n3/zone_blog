@@ -5,6 +5,7 @@ from search import Search
 from model import *
 import datetime
 import json
+import os
 from bson import json_util
 
 app = Flask(__name__)
@@ -31,14 +32,15 @@ def admin():
 
 @app.route("/admin/index")
 def admin_index():
-    if 'username' in session:
+    if 'admin' in session:
         return render_template('admin_index.html')
     return redirect(url_for('admin_login'))
 
 @app.route("/admin/login",methods=['GET','POST'])
 def admin_login():
     if request.method == 'POST':
-        session['username']=request.form['username']
+        if request.form['username'] == 'admin':
+            session['admin']='True'
         return redirect(url_for('admin'))
     return render_template('admin_login.html')
 
@@ -96,7 +98,7 @@ def search():
     return render_template('player.html',song=target.fetch(keyword,1,0))
 
 if __name__ == "__main__":
-    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+    app.secret_key = os.urandom(24)
     app.run(debug=True)
 
 
