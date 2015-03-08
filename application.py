@@ -39,10 +39,15 @@ def admin_index():
 @app.route("/admin/login",methods=['GET','POST'])
 def admin_login():
     if request.method == 'POST':
-        if request.form['username'] == 'admin':
+        if request.form['username'] == 'admin': # password
             session['admin']='True'
         return redirect(url_for('admin'))
     return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin', None)
+    return redirect(url_for('index'))
 
 @app.route('/post/json', methods=['GET'])
 def post_json():

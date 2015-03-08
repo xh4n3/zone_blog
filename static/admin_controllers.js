@@ -11,7 +11,7 @@ var homepageCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", functio
 
                 $win.bind("scroll.sticky", function (e) {
                     var pos = $win.scrollTop();
-                    
+
                     for (var i = 0; i < scope._stickyElements.length; i++) {
 
                         var item = scope._stickyElements[i];
@@ -101,7 +101,6 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
         }
     };
 
-
   }]);
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
@@ -134,7 +133,7 @@ homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', func
   }]);
     });
     }]);
-homepageCtrl.controller('postnewCtrl', ['$scope', '$http', function ($scope, $http) {
+homepageCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($scope, $window, $http) {
 
     $scope.title = '';
     $scope.body = '';
@@ -146,7 +145,7 @@ homepageCtrl.controller('postnewCtrl', ['$scope', '$http', function ($scope, $ht
             body: $scope.body
         }).success(function (data) {
             $scope.status = data;
-        })
+        }).then($window.history.back())
     };
     $scope.select = function (cate) {
         $scope.category = cate;
