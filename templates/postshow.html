@@ -1,18 +1,26 @@
 <div class="ui grid page">
     <div class="row"></div>
     <div class="computer tablet only row">
-        <div class="ten wide column">
+        <div class="two wide column">
             <div class="row">
-                <i class="[[ category ]] icon"></i> [[ category ]] &nbsp;&nbsp;
-                <span class="ui header huge font color">[[ title ]]</span>
+                <i class="[[ post['category'] ]] icon"></i>[[ post['category'] ]]
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            <span class="ui header huge font color">[[ post['title'] ]]</span>
+            <div class="row">
+                <h5 class="ui right floated header font color inline readmore">
+                    [[ post['created_at']['$date'] | fromNow ]]</h5>
             </div>
         </div>
     </div>
+
     <div class="computer tablet only row">
-        <div class="one wide column"></div>
-        <div class="ten wide column">
+        <div class="two wide column"></div>
+        <div class="fourteen wide column">
             <div class="row">
-                <div ng-bind-html="html | markdown"></div>
+                <div ng-bind-html="post['body'] | markdown"></div>
+
             </div>
             <div class="row">
                 <hr/>

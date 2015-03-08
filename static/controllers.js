@@ -24,9 +24,7 @@ homepageCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $h
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {
-        $scope.title = data[0]['title'];
-        $scope.html = data[0]['body'];
-        $scope.category = data[0]['category'];
+        $scope.post = data[0];
     });
     }]);
 
