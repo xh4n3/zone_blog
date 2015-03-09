@@ -105,34 +105,32 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {
+        $scope.post = data[0];
+    })
+}]);
+homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    $scope.postid = $routeParams.postid;
+    var editor = angular.element(document.querySelector(".editor"));
+    editor.addClass("stuck");
+    $http.get('/post/' + $scope.postid).success(function (data) {
         $scope.title = data[0]['title'];
-        $scope.html = data[0]['body'];
+        $scope.body = data[0]['body'];
         $scope.category = data[0]['category'];
-        homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
-            $scope.postid = $routeParams.postid;
-            var editor = angular.element(document.querySelector(".editor"));
-            editor.addClass("stuck");
-            $http.get('/post/' + $scope.postid).success(function (data) {
-                $scope.title = data[0]['title'];
-                $scope.body = data[0]['body'];
-                $scope.category = data[0]['category'];
-            });
-            $scope.post = function () {
-                $http.post('/post/save/' + $scope.postid, {
-                    title: $scope.title,
-                    category: $scope.category,
-                    body: $scope.body
-                }).success(function (data) {
-                    $scope.status = data;
-                })
-            };
-            $scope.select = function (cate) {
-                $scope.category = cate;
-            };
+    });
+    $scope.post = function () {
+        $http.post('/post/save/' + $scope.postid, {
+            title: $scope.title,
+            category: $scope.category,
+            body: $scope.body
+        }).success(function (data) {
+            $scope.status = data;
+        })
+    };
+    $scope.select = function (cate) {
+        $scope.category = cate;
+    };
 
   }]);
-    });
-    }]);
 homepageCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($scope, $window, $http) {
 
     $scope.title = '';
