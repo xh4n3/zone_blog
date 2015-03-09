@@ -65,7 +65,7 @@ def post_list():
 def post_save():
     rawcontent = request.data
     content=json.loads(rawcontent)
-    c_articles(content['title'],content['category'],content['body'],1).save()
+    c_articles(content['title'],content['category'],content['body'],"green unlock").save()
     return 'Success'
 
 @app.route("/post/save/<postid>", methods=['POST'])
@@ -119,5 +119,4 @@ def search():
 if __name__ == "__main__":
     app.secret_key = os.urandom(24)
     app.run(debug=True)
-
 
