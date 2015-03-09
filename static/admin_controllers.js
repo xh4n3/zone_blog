@@ -69,31 +69,27 @@ var homepageCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", functio
 
 
 homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
-
     $scope.keyword = '';
     $scope.songurl = '';
     $scope.deleting = false;
-    $http.get('/post/json').success(function (data) {
+    $http.get('/post/list').success(function (data) {
         $scope.posts = data;
     });
-    $scope.search = function (event) {
-        if (event.which === 13) {
-            $http.post('/search/json', {
-                keyword: $scope.keyword
-            }).success(function (data) {
-                $scope.json = data;
+    $scope.lock = function (postid, status) {
+        if (status == 'black lock') {
+            $http.get('/post/unlock/' + postid).success(function(){
+                $route.reload()
+            })
+        } else {
+            $http.get('/post/lock/' + postid).success(function(){
+                $route.reload()
             })
         }
-    };
-    $scope.select = function (song) {
-        $scope.songurl = song['mp3Url'];
-        $scope.songname = song['name'];
     };
     $scope.delete = function (postid) {
         if ($scope.deleting == true) {
             $http.get('/post/delete/' + postid, {})
                 .success(function (data) {
-                    $scope.json = data;
                     $route.reload();
                 })
         } else {
@@ -101,7 +97,7 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
         }
     };
 
-  }]);
+            }]);
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {

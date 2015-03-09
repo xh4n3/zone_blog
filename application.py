@@ -51,17 +51,21 @@ def admin_logout():
 
 @app.route('/post/json', methods=['GET'])
 def post_json():
-    return c_articles.objects.order_by('-created_at').all().to_json()
+    return c_articles.objects(lock='green unlock').order_by('-created_at').all().to_json()
 
 @app.route('/post/<postid>')
 def post_content(postid):
     return c_articles.objects(id=postid).all().to_json()
 
+@app.route('/post/list', methods=['GET'])
+def post_list():
+    return c_articles.objects().order_by('-created_at').all().to_json()
+
 @app.route("/post/save", methods=['POST'])
 def post_save():
     rawcontent = request.data
     content=json.loads(rawcontent)
-    c_articles(content['title'],content['category'],content['body']).save()
+    c_articles(content['title'],content['category'],content['body'],1).save()
     return 'Success'
 
 @app.route("/post/save/<postid>", methods=['POST'])
@@ -75,6 +79,16 @@ def post_update(postid):
 def post_delete(postid):
     c_articles.objects(id=postid).first().delete()
     return 'Post ' + postid + ' deleted'
+
+@app.route("/post/lock/<postid>")
+def post_lock(postid):
+    c_articles.objects(id=postid).first().update(set__lock="black lock")
+    return 'success'
+
+@app.route("/post/unlock/<postid>")
+def post_unlock(postid):
+    c_articles.objects(id=postid).first().update(set__lock="green unlock")
+    return 'success'
 
 @app.route('/search/json', methods=['POST'])
 def search_json():

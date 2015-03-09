@@ -1,14 +1,14 @@
 <div class="ui grid page">
     <div class="row"></div>
-        <div class="computer tablet only row">
+    <div class="computer tablet only row">
         <div class="eight wide column">
-        <a href="#/post/new"><i class="ui add square icon"></i>New Post</a>
-            </div>
-            <div class="two wide column right aligned">
-        <a href="/admin/logout"><i class="ui sign out icon"></i>Exit</a>
+            <a href="#/post/new"><i class="ui add square icon"></i>New Post</a>
+        </div>
+        <div class="two wide column right aligned">
+            <a href="/admin/logout"><i class="ui sign out icon"></i>Exit</a>
+        </div>
     </div>
-            </div>
-        <div class="computer tablet only ten wide column">
+    <div class="computer tablet only ten wide column">
         <table class="ui unstackable striped table">
             <tbody>
                 <tr ng-repeat="post in posts" ng-mouseenter="show=true" ng-mouseleave="show=false">
@@ -17,18 +17,24 @@
                     </td>
                     <td><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
                     </td>
-                    <td class="collapsing">
-                        <div ng-if="show">
-                        <a title="edit" href="#/post/edit/[[ post._id['$oid'] ]]">
-                            <i class="ui blue edit icon"></i>
-                        </a>
-                        <i class="ui link black lock icon"></i>
-                        <i class="ui link green unlock icon"></i>
-                        <a title="delete" ng-click="delete([[ post._id['$oid'] ]])">
-                            <i ng-if="!deleting" class="ui link red remove icon"></i>
-                            <i ng-if="deleting" class="help link red loading icon"></i>
-                        </a>
-                            </div>
+                    <td class="right aligned">
+                        <span ng-if="show">
+                            <a title="edit" href="#/post/edit/[[ post._id['$oid'] ]]">
+                                <i class="ui blue link edit icon"></i>
+                            </a>
+                            <a title="delete" ng-click="delete([[ post._id['$oid'] ]])">
+                                <i ng-if="!deleting" class="ui link red remove icon"></i>
+                                <i ng-if="deleting" class="help link red loading icon"></i>
+                            </a>
+                                                        <a title="lock" ng-click="lock([[ post._id['$oid'] ]],[[ post.lock ]])">
+                                <i class="ui link [[ post.lock ]] icon"></i>
+                            </a>
+                        </span>
+                        <span ng-if="!show">
+                            <a title="lock" ng-if="post.lock=='black lock'">
+                                <i class="ui link [[ post.lock ]] icon"></i>
+                            </a>
+                        </span>
                     </td>
                     <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
                 </tr>

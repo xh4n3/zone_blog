@@ -31,18 +31,6 @@ myApp.config(['$routeProvider',
             templateUrl: '/post/show',
             controller: 'postshowCtrl'
         }).
-        when('/admin', {
-            templateUrl: '/admin',
-            controller: 'adminCtrl'
-        }).
-        when('/post/new', {
-            templateUrl: '/post/edit',
-            controller: 'postnewCtrl'
-        }).
-        when('/post/edit/:postid', {
-            templateUrl: '/post/edit',
-            controller: 'posteditCtrl'
-        }).
         otherwise({
             redirectTo: '/error'
         });
