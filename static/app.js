@@ -1,10 +1,10 @@
-angular.module('markdown',[]).config(function (markdownProvider) {
-    markdownProvider.config({
-        extensions: ['table']
-    });
-});
+//angular.module('markdown',[]).config(function (markdownProvider) {
+//    markdownProvider.config({
+//        extensions: ['table']
+//    });
+//});
 
-var myApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
+var zoneApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }).config(function ($sceDelegateProvider) {
@@ -20,7 +20,7 @@ var myApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], funct
     'http://myapp.example.com/clickThru**'
   ]);
 });
-myApp.config(['$routeProvider',
+zoneApp.config(['$routeProvider',
               function ($routeProvider) {
         $routeProvider.
         when('/', {
@@ -35,7 +35,7 @@ myApp.config(['$routeProvider',
             redirectTo: '/error'
         });
   }]);
-myApp.filter('fromNow', function () {
+zoneApp.filter('fromNow', function () {
     return function (date) {
         return moment(date).zone(480).fromNow();
     }

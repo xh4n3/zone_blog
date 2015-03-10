@@ -1,4 +1,4 @@
-var homepageCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", function ($window) {
+var zoneCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", function ($window) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -68,7 +68,7 @@ var homepageCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", functio
 
 
 
-homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
+zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
     $scope.keyword = '';
     $scope.songurl = '';
     $scope.deleting = false;
@@ -101,16 +101,18 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
 
 
             }]);
-homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {
         $scope.post = data[0];
     })
 }]);
 
-homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', 'FileUploader', function ($scope, $routeParams, $http, FileUploader) {
+zoneCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', 'FileUploader', function ($scope, $routeParams, $http, FileUploader) {
 
-    $scope.uploader = new FileUploader({url: '/post/upload'});
+    $scope.uploader = new FileUploader({
+        url: '/post/upload'
+    });
 
     $scope.postid = $routeParams.postid;
     var editor = angular.element(document.querySelector(".editor"));
@@ -134,7 +136,7 @@ homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', 'Fil
     };
 
   }]);
-homepageCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($scope, $window, $http) {
+zoneCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($scope, $window, $http) {
 
     $scope.title = '';
     $scope.body = '';
@@ -152,7 +154,8 @@ homepageCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function (
         $scope.category = cate;
     };
   }]);
-homepageCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', function ($scope, $window, $routeParams, $http) {
+
+zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', function ($scope, $window, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
 
     $http.get('/post/' + $scope.postid).success(function (data) {
@@ -171,7 +174,6 @@ homepageCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$
         height: editor.outerHeight() + "px"
     });
 
-
     $scope.post = function () {
         $http.post('/post/save/' + $scope.postid, {
             title: $scope.title,
@@ -179,7 +181,7 @@ homepageCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$
             body: $scope.body
         }).success(function (data) {
             $scope.status = data;
-        })
+        }).then($window.history.back())
     };
     $scope.discard = function () {
         $window.history.back()

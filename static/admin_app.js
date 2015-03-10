@@ -1,10 +1,10 @@
-angular.module('markdown', []).config(function (markdownProvider) {
-    markdownProvider.config({
-        extensions: ['table']
-    });
-});
+//angular.module('markdown', []).config(function (markdownProvider) {
+//    markdownProvider.config({
+//        extensions: ['table']
+//    });
+//});
 
-var myApp = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'angularFileUpload'], function ($interpolateProvider) {
+var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'angularFileUpload'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }).config(function ($sceDelegateProvider) {
@@ -20,7 +20,7 @@ var myApp = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'ang
     'http://myapp.example.com/clickThru**'
   ]);
 });
-myApp.config(['$routeProvider',
+zoneAdmin.config(['$routeProvider',
               function ($routeProvider) {
         $routeProvider.
         when('/', {
@@ -48,13 +48,13 @@ myApp.config(['$routeProvider',
             redirectTo: '/error'
         });
   }]);
-myApp.filter('fromNow', function () {
+zoneAdmin.filter('fromNow', function () {
     return function (date) {
         return moment(date).fromNow();
     }
 });
 
-myApp.directive('attachable', function (FileUploader) {
+zoneAdmin.directive('attachable', function (FileUploader) {
     return {
         restrict: 'E',
         templateUrl: 'attachable.html',

@@ -1,5 +1,6 @@
-var homepageCtrl = angular.module('zoneCtrl', []);
-homepageCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $http) {
+var zoneCtrl = angular.module('zoneCtrl', []);
+
+zoneCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.keyword = '';
     $scope.songurl = '';
     $http.get('/post/json').success(function (data) {
@@ -21,7 +22,7 @@ homepageCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $h
   }]);
 
 
-homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {
         $scope.post = data[0];
