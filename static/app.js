@@ -7,17 +7,13 @@
 var zoneApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
-}).config(function ($sceDelegateProvider) {
+});
+zoneApp.config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
     // Allow same origin resource loads.
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
     'http://m1.music.126.net/**'
-  ]);
-
-    // The blacklist overrides the whitelist so the open redirect here is blocked.
-    $sceDelegateProvider.resourceUrlBlacklist([
-    'http://myapp.example.com/clickThru**'
   ]);
 });
 zoneApp.config(['$routeProvider',
@@ -37,6 +33,26 @@ zoneApp.config(['$routeProvider',
   }]);
 zoneApp.filter('fromNow', function () {
     return function (date) {
-        return moment(date).zone(480).fromNow();
+        return moment(date).fromNow();
     }
+});
+
+zoneApp.factory('searchMusic', function ($http, $q) {
+    var _keyword = '';
+
+    service.setkeyword = function (keyword) {
+        _keyword = keyword;
+    };
+    service.search = function () {
+        var deferred = $q.defer();
+        $http.post('/search/json', {
+            keyword: _keyword
+        }).success(function (data) {
+            deferred.resolve(data);
+        }).error(function () {
+            deferred.reject('error');
+        })
+        return deferred.promise;
+    };
+    return service;
 });

@@ -157,7 +157,6 @@ zoneCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($sco
 
 zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', function ($scope, $window, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
-
     $http.get('/post/' + $scope.postid).success(function (data) {
         $scope.title = data[0]['title'];
         $scope.body = data[0]['body'];

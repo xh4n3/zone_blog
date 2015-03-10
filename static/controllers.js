@@ -1,6 +1,6 @@
 var zoneCtrl = angular.module('zoneCtrl', []);
 
-zoneCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $http) {
+zoneCtrl.controller('homepageCtrl', ['$scope', '$http',, function ($scope, $http) {
     $scope.keyword = '';
     $scope.songurl = '';
     $http.get('/post/json').success(function (data) {
@@ -8,6 +8,13 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', function ($scope, $http)
     });
     $scope.search = function (event) {
         if (event.which === 13) {
+          /*  searchMusic.setkeyword($scope.keyword);
+            searchMusic.search().then(function (data) {
+                $scope.json = data;
+            }, function (data) {
+                alert(data);
+            });
+*/
             $http.post('/search/json', {
                 keyword: $scope.keyword
             }).success(function (data) {
