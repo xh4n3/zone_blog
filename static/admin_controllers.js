@@ -72,16 +72,18 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
     $scope.keyword = '';
     $scope.songurl = '';
     $scope.deleting = false;
+    $scope.uploading = false;
+
     $http.get('/post/list').success(function (data) {
         $scope.posts = data;
     });
     $scope.lock = function (postid, status) {
         if (status == 'black lock') {
-            $http.get('/post/unlock/' + postid).success(function(){
+            $http.get('/post/unlock/' + postid).success(function () {
                 $route.reload()
             })
         } else {
-            $http.get('/post/lock/' + postid).success(function(){
+            $http.get('/post/lock/' + postid).success(function () {
                 $route.reload()
             })
         }
@@ -97,6 +99,7 @@ homepageCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($sc
         }
     };
 
+
             }]);
 homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
@@ -104,7 +107,11 @@ homepageCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', func
         $scope.post = data[0];
     })
 }]);
-homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+
+homepageCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', 'FileUploader', function ($scope, $routeParams, $http, FileUploader) {
+
+    $scope.uploader = new FileUploader({url: '/post/upload'});
+
     $scope.postid = $routeParams.postid;
     var editor = angular.element(document.querySelector(".editor"));
     editor.addClass("stuck");

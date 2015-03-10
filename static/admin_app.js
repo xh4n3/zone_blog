@@ -1,10 +1,10 @@
-angular.module('markdown',[]).config(function (markdownProvider) {
+angular.module('markdown', []).config(function (markdownProvider) {
     markdownProvider.config({
         extensions: ['table']
     });
 });
 
-var myApp = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
+var myApp = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'angularFileUpload'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }).config(function ($sceDelegateProvider) {
@@ -54,3 +54,21 @@ myApp.filter('fromNow', function () {
     }
 });
 
+myApp.directive('attachable', function (FileUploader) {
+    return {
+        restrict: 'E',
+        templateUrl: 'attachable.html',
+        compile: function () {
+            return {
+                pre: function (scope, element, attrs) {
+                    scope.uploader = new FileUploader();
+                    console.log(1);
+                },
+                // link
+                post: function (scope, element, attrs) {
+                    console.log(2);
+                }
+            };
+        }
+    }
+});
