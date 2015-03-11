@@ -28,7 +28,6 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', 'searchMusic', function 
     };
   }]);
 
-
 zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', 'getPost', function ($scope, $routeParams, $http, getPost) {
     if ($routeParams.postid != null) {
         getPost.setPostid($routeParams.postid);

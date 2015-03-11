@@ -4,7 +4,7 @@
 //    });
 //});
 
-var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'angularFileUpload'], function ($interpolateProvider) {
+var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });
@@ -15,11 +15,6 @@ zoneAdmin.config(function ($sceDelegateProvider) {
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
     'http://m1.music.126.net/**'
-  ]);
-
-    // The blacklist overrides the whitelist so the open redirect here is blocked.
-    $sceDelegateProvider.resourceUrlBlacklist([
-    'http://myapp.example.com/clickThru**'
   ]);
 });
 zoneAdmin.config(['$routeProvider',
@@ -53,24 +48,5 @@ zoneAdmin.config(['$routeProvider',
 zoneAdmin.filter('fromNow', function () {
     return function (date) {
         return moment(date).fromNow();
-    }
-});
-
-zoneAdmin.directive('attachable', function (FileUploader) {
-    return {
-        restrict: 'E',
-        templateUrl: 'attachable.html',
-        compile: function () {
-            return {
-                pre: function (scope, element, attrs) {
-                    scope.uploader = new FileUploader();
-                    console.log(1);
-                },
-                // link
-                post: function (scope, element, attrs) {
-                    console.log(2);
-                }
-            };
-        }
     }
 });

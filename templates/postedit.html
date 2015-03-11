@@ -23,14 +23,7 @@
                         <i class="photo icon"></i>
                     </div>
                     <div ng-show="uploading">
-                        <input type="file" nv-file-select uploader="uploader" />
-                        <ul>
-                            <li ng-repeat="item in uploader.queue">
-                                Name: <span ng-bind="item.file.name"></span>
-                                <br/>
-                                <button ng-click="item.upload()">upload</button>
-                            </li>
-                        </ul>
+                        <input type="file" onchange="angular.element(this).scope().upload(this);" />
                     </div>
                     <textarea ng-model="body"></textarea>
                 </div>

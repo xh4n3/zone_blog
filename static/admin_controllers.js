@@ -100,6 +100,7 @@ zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope,
 
 
             }]);
+
 zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.postid = $routeParams.postid;
     $http.get('/post/' + $scope.postid).success(function (data) {
@@ -107,34 +108,6 @@ zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function
     })
 }]);
 
-zoneCtrl.controller('posteditCtrl', ['$scope', '$routeParams', '$http', 'FileUploader', function ($scope, $routeParams, $http, FileUploader) {
-
-    $scope.uploader = new FileUploader({
-        url: '/post/upload'
-    });
-
-    $scope.postid = $routeParams.postid;
-    var editor = angular.element(document.querySelector(".editor"));
-    editor.addClass("stuck");
-    $http.get('/post/' + $scope.postid).success(function (data) {
-        $scope.title = data[0]['title'];
-        $scope.body = data[0]['body'];
-        $scope.category = data[0]['category'];
-    });
-    $scope.post = function () {
-        $http.post('/post/save/' + $scope.postid, {
-            title: $scope.title,
-            category: $scope.category,
-            body: $scope.body
-        }).success(function (data) {
-            $scope.status = data;
-        })
-    };
-    $scope.select = function (cate) {
-        $scope.category = cate;
-    };
-
-  }]);
 zoneCtrl.controller('postnewCtrl', ['$scope', '$window', '$http', function ($scope, $window, $http) {
 
     $scope.title = '';
@@ -187,6 +160,23 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
     $scope.select = function (cate) {
         $scope.category = cate;
     };
+
+    $scope.upload = function (element) {
+        var fd = new FormData()
+        console.log(element.files[0]);
+        fd.append('file', element.files[0]);
+        $http.post("/post/upload", fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        }).success(function (data) {
+            
+            $scope.body = $scope.body+'![MacDown logo](' + data+')';
+        });
+    };
+
+
   }]);
 
 (function (angular) {

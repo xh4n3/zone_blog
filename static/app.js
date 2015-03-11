@@ -70,15 +70,14 @@ zoneApp.factory('getPost', function ($http, $q) {
                     deferred.resolve(data);
                 })
                 .error(function () {
-                    deferred.reject('error');
+                    deferred.reject('cannot get all post');
                 });
-            console.log(1);
         } else {
             $http.get('/post/' + _postid)
                 .success(function (data) {
                     deferred.resolve(data);
                 }).error(function () {
-                    deferred.reject('error');
+                    deferred.reject('cannot get post with this id');
                 })
         };
         return deferred.promise;
