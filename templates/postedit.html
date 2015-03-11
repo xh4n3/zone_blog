@@ -19,9 +19,24 @@
                 </div>
                 <div class="field">
                     <label>Body</label>
-                    <div class="ui tiny button" ng-click="uploading=!uploading">
-                        <i class="photo icon"></i>
+                    <div class="ui icon buttons">
+                        <div class="ui icon button" ng-click="insert('bold')">
+                            <i class="bold icon"></i>
+                        </div>
+                        <div class="ui icon button" ng-click="insert('mark')">
+                            <i class="underline icon"></i>
+                        </div>
+                        <div class="ui icon button" ng-click="insert('code')">
+                            <i class="code icon"></i>
+                        </div>
+                        <div class="ui icon button" ng-click="insert('linkify')">
+                            <i class="linkify icon"></i>
+                        </div>
+                        <div class="ui icon button" ng-click="uploading=!uploading">
+                            <i class="photo icon"></i>
+                        </div>
                     </div>
+
                     <div ng-show="uploading">
                         <input type="file" onchange="angular.element(this).scope().upload(this);" />
                     </div>

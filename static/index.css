@@ -23,11 +23,42 @@
     color: #BDBDBD !important;
 }
 
+.post img {
+    /* not showing imgs on homepage*/
+    
+    width: 60%;
+    height: auto;
+    display: none;
+}
+
+pre {
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    word-wrap: break-word !important;
+    background-color: #efedef !important;
+    width: inherit !important;
+}
+
+code {
+    font-family: Courier, 'New Courier', monospace !important;
+    font-size: 12px !important;
+    color: #000c27 !important;
+    display: inline !important;
+}
+
 img {
     /* in case of overflowing in markdown */
     
-    width: 100%;
+    width: 50%;
     height: auto;
+}
+
+
+.field .ui.icon.buttons {
+    display: inline-block;
+    float: right;
+    margin: 0 0;
 }
 
 textarea {
@@ -37,10 +68,11 @@ textarea {
 audio {
     width: 100% !important;
 }
+
 .resizing {
     /* for preview on homepage */
     
-    overflow: hidden;
+    overflow: hidden !important;
     max-height: 15rem !important;
     line-height: 1rem !important;
 }

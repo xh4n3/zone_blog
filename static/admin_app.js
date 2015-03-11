@@ -35,7 +35,7 @@ zoneAdmin.config(['$routeProvider',
         }).
         when('/post/new', {
             templateUrl: '/post/edit',
-            controller: 'postnewCtrl'
+            controller: 'posteditCtrl'
         }).
         when('/post/edit/:postid', {
             templateUrl: '/post/edit',
