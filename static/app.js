@@ -39,7 +39,7 @@ zoneApp.filter('fromNow', function () {
 
 zoneApp.factory('searchMusic', function ($http, $q) {
     var _keyword = '';
-
+    var service = {};
     service.setkeyword = function (keyword) {
         _keyword = keyword;
     };
@@ -52,6 +52,35 @@ zoneApp.factory('searchMusic', function ($http, $q) {
         }).error(function () {
             deferred.reject('error');
         })
+        return deferred.promise;
+    };
+    return service;
+});
+zoneApp.factory('getPost', function ($http, $q) {
+    var _postid = '';
+    var service = {};
+    service.setPostid = function (postid) {
+        _postid = postid;
+    };
+    service.get = function () {
+        var deferred = $q.defer();
+        if (_postid === '') {
+            $http.get('/post/json')
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function () {
+                    deferred.reject('error');
+                });
+            console.log(1);
+        } else {
+            $http.get('/post/' + _postid)
+                .success(function (data) {
+                    deferred.resolve(data);
+                }).error(function () {
+                    deferred.reject('error');
+                })
+        };
         return deferred.promise;
     };
     return service;

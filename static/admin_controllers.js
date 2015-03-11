@@ -77,6 +77,7 @@ zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope,
     $http.get('/post/list').success(function (data) {
         $scope.posts = data;
     });
+
     $scope.lock = function (postid, status) {
         if (status == 'black lock') {
             $http.get('/post/unlock/' + postid).success(function () {
