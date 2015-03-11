@@ -15,8 +15,6 @@ This blog is based on **flask**, **mongodb** and **angularjs**.
 
 ### Todo List
 
-
-* Security issues: Unauthenticated access
 * Disqus is not working idealy with angularjs
 * Admin editor isn't following user's screen, 'sticky' should be added
 * Homepage UI, especially sidebar

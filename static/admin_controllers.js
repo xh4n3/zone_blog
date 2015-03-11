@@ -8,10 +8,8 @@ var zoneCtrl = angular.module('zoneCtrl', []).directive("ng-sticky", function ($
 
             if (scope._stickyElements === undefined) {
                 scope._stickyElements = [];
-
                 $win.bind("scroll.sticky", function (e) {
                     var pos = $win.scrollTop();
-
                     for (var i = 0; i < scope._stickyElements.length; i++) {
 
                         var item = scope._stickyElements[i];
