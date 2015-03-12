@@ -8,20 +8,6 @@
     color: #BDBDBD !important;
 }
 
-.tablet_mobile a {
-    position: absolute !important;
-    top: 0 !important;
-}
-
-.tablet_mobile h1 {
-    display: inline-block;
-    color: #33CCFF !important;
-}
-
-.tablet_mobile h5 {
-    display: inline-block;
-    color: #BDBDBD !important;
-}
 
 #homepage_title {
     margin-bottom: 2rem !important;
@@ -87,9 +73,6 @@ textarea {
     min-height: 25rem !important;
 }
 
-audio {
-    width: 100% !important;
-}
 
 .resizing {
     /* for preview on homepage */
@@ -135,9 +118,12 @@ hr {
 
 .homepage_menu {
 
-    margin-top: 10rem !important;
+    margin-top: 5rem !important;
 }
 
+.player {
+    width: 10rem !important;
+}
 body {
     background-color: #faf9f6 !important;
 }

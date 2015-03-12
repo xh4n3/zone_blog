@@ -1,61 +1,35 @@
-<div class="ui grid page">
-    <div class="row"></div>
-    <div class="computer tablet only row">
-        <div class="two wide column">
-            <div class="row">
-                <i class="[[ post['category'] ]] icon"></i>[[ post['category'] ]]
-            </div>
-        </div>
-        <div class="fourteen wide column">
-            <span class="ui header huge font color">[[ post['title'] ]]</span>
-            <div class="row">
-                <h5 class="ui right floated header font color inline readmore">
-                    [[ post['created_at']['$date'] | fromNow ]]</h5>
-            </div>
-        </div>
-    </div>
+<div class="computer only row">
+    <span class="ui header huge font color">[[ post['title'] ]]</span>
 
-    <div class="computer tablet only row">
-        <div class="two wide column"></div>
-        <div class="fourteen wide column">
-            <div class="row">
-                <div id="showpost" ng-bind-html="post['body'] | markdown"></div>
-
-            </div>
-            <div class="row">
-                <hr/>
-                <div class="ui fluid button" ng-click="comment=!comment"><i class="comments icon"></i>comments</div>
-                <div ng-show="comment" id="disqus_thread"></div>
-            </div>
-            <script type="text/javascript">
-                var disqus_shortname = 'xh4n3';
-                (function () {
-                    var dsq = document.createElement('script');
-                    dsq.type = 'text/javascript';
-                    dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-            </noscript>
-
-        </div>
+    <div class="right aligned column">
+        <span class="font color">
+    <i class="[[ post['category'] ]] icon"></i>[[ post['category'] ]]
+    </span>
     </div>
-    <div class="mobile only row">
-        <div class="sixteen wide column">
-            <div class="row">
-                <i class="[[ category ]] icon"></i>&nbsp;&nbsp;
-                <span class="ui header huge font color">[[ title ]]</span>
-            </div>
-        </div>
-    </div>
-    <div class="mobile only row">
-        <div class="one wide column"></div>
-        <div class="fifteen wide column">
-            <div class="row">
-                <div ng-bind-html="html | markdown"></div>
-            </div>
-        </div>
+    <div class="right aligned column">
+        <span class="font color">
+            [[ post['created_at']['$date'] | fromNow ]]
+        </span>
     </div>
 </div>
+<div class="computer only row">
+    <div id="showpost" ng-bind-html="post['body'] | markdown"></div>
+</div>
+
+<div class="computer only row">
+    <hr/>
+    <div class="ui fluid button" ng-click="comment=!comment"><i class="comments icon"></i>comments</div>
+    <div ng-show="comment" id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+    var disqus_shortname = 'xh4n3';
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>

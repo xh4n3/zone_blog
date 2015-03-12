@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="zoneApp">
+<html ng-app="zoneApp" ng-controller="zoneCtrl">
 
 <head>
     <title>Zone | xh4n3</title>
@@ -32,7 +32,56 @@
             </a>
         </div>
     </div>
-    <div ng-view></div>
+    <div class="ui grid page">
+        <div class="three wide computer only column">
+            <div class="homepage_menu row ui fixed sticky">
+                <div class="ui vertical text menu">
+                    <a class="item" href="#/">
+                        <i class="home icon"></i> home
+                    </a>
+                    <a class="item">
+                        <i class="archive icon"></i> archive
+                    </a>
+                    <a class="item">
+                        <i class="child icon"></i> about
+                    </a>
+                    <a class="item" ng-click="showmusic=!showmusic">
+                        <i class="heartbeat icon"></i> music
+                    </a>
+                </div>
+                <div class="row player" ng-show="showmusic">
+                    <div class="ui form">
+                        <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
+                    </div>
+                    <table class="ui celled striped table">
+                        <tbody>
+                            <tr ng-repeat="song in json['result']['songs']">
+
+                                <td class="collapsing">
+                                    [[ song['name'] ]]
+                                </td>
+                                <td class="collapsing">
+                                    [[ song['artists'][0]['name'] ]]
+                                </td>
+                                <td class="collapsing">
+                                    <a ng-click="select(song)" ng-init="songurl=''">
+                                        <i class="play icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <audio controls ng-if="songurl" class="audio">
+                        <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+        </div>
+        <div class="thirteen wide computer only column" ng-view>
+        </div>
+    </div>
     <div class="ui page grid bottom">
         <div class="row">
             <div class="ui four wide column">

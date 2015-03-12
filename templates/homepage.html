@@ -1,100 +1,22 @@
-<div class="ui grid page">
-    <div class="three wide computer only column">
-        <div class="homepage_menu row">
-            <div class="ui vertical text menu">
-                <div class="item">xh4n3</div>
-                <a class="active item">
-                    <i class="home icon"></i> home
-                </a>
-                <a class="item">
-                    <i class="archive icon"></i> archive
-                </a>
-                <a class="item">
-                    <i class="child icon"></i> about
-                </a>
-                <a class="item" ng-click="showmusic=!showmusic">
-                    <i class="heartbeat icon"></i> music
-                </a>
-            </div>
-        </div>
-        <div class="row" ng-show="showmusic">
-            <div class="ui form">
-                <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
-            </div>
-            <br/>
-            <div ng-show="keyword">Searching for [[ keyword ]]</div>
-            <table class="ui celled striped table">
-                <tbody>
-                    <tr ng-repeat="song in json['result']['songs']">
-
-                        <td class="collapsing">
-                            [[ song['name'] ]]
-                        </td>
-                        <td class="collapsing">
-                            [[ song['artists'][0]['name'] ]]
-                        </td>
-                        <td class="collapsing">
-                            <a ng-click="select(song)" ng-init="songurl=''">
-                                <i class="play icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <audio controls ng-if="songurl" class="audio">
-                <source autoplay="autoplay" ng-src="[[ songurl ]]" type="audio/mpeg">
-                    Your browser does not support the audio element.
-            </audio>
-        </div>
+<div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
+    <a href="#/post/id/[[ post._id['$oid'] ]]">
+        <h1 id="homepage_title" class="ui header font color">[[ post.title ]]</h1>
+    </a>
+    <div class="resizing" id="homepost" ng-bind-html="post.body | markdown">
     </div>
-    <div class="thirteen wide computer only column">
-        <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
-            <a href="#/post/id/[[ post._id['$oid'] ]]">
-                <h1 id="homepage_title" class="ui header font color">[[ post.title ]]</h1>
-            </a>
-            <div class="resizing" id="homepost" ng-bind-html="post.body | markdown">
-            </div>
-            <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
-            <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
-            <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
-            <hr/>
-        </div>
-        <div class="ui borderless pagination menu">
-            <a class="icon item" ng-show="pageid > 1" ng-href="#/page/[[ pageid - 1 ]]">
-                <i class="left arrow icon"></i>
-            </a>
-            <a class="item">
+    <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
+    <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
+    <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
+    <hr/>
+</div>
+<div class="ui borderless pagination menu">
+    <a class="icon item" ng-show="pageid > 1" ng-href="#/page/[[ pageid - 1 ]]">
+        <i class="left arrow icon"></i>
+    </a>
+    <a class="item">
                 [[ pageid ]]
             </a>
-            <a class="icon item" ng-show="nextpage" ng-href="#/page/[[ pageid + 1 ]]">
-                <i class="right arrow icon"></i>
-            </a>
-        </div>
-    </div>
-    <div class="sixteen wide tablet only column">
-        <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
-            <h1 class="ui center aligned header font color">[[ post.title ]]</h1>
-            <div ng-bind-html="post.body | markdown" class="resizing">
-            </div>
-            <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
-            <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
-            <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
-            <hr/>
-
-        </div>
-    </div>
-    <div class="sixteen wide mobile only column">
-        <table class="ui unstackable striped table">
-            <tbody>
-                <tr ng-repeat="post in posts">
-                    <td class="one wide">
-                        <i class="ui [[ post.category ]] icon"></i>
-                    </td>
-                    <td class="collapsing"><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
-                    </td>
-                    <td class="right aligned collapsing color">[[ post.created_at['$date'] | fromNow ]]</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <a class="icon item" ng-show="nextpage" ng-href="#/page/[[ pageid + 1 ]]">
+        <i class="right arrow icon"></i>
+    </a>
 </div>
