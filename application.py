@@ -40,8 +40,9 @@ def post_json(pageid):
         pageid = 1
     finally:
         return c_articles.objects(lock='green unlock'
-                              ).order_by('-created_at')[(pageid - 1)
-        * _POST_PER_PAGE:pageid * _POST_PER_PAGE].all().to_json()
+                                  ).order_by('-created_at')[(pageid
+                - 1) * _POST_PER_PAGE:pageid
+            * _POST_PER_PAGE].all().to_json()
 
 
 @app.route('/admin')
@@ -125,7 +126,7 @@ def post_upload():
     if 'admin' in session:
         file = request.files['file']
         if file and '.' in file.filename and file.filename.rsplit('.',
-                1)[1] in ALLOWED_EXTENSIONS:
+                1)[1] in _ALLOWED_EXTENSIONS:
             filename = str(int(time.time() * 100)) + '.' \
                 + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],
@@ -171,13 +172,15 @@ def search_json():
     return target.fetch(para, 3, 1)  # keyword limit isjson
 
 if __name__ == '__main__':
-    _ADMIN_PASSWORD = 'admin'
     _HOST = '127.0.0.1'
+    _PORT = 5000
+    _DEBUG = True
     _POST_PER_PAGE = 5
-
-    UPLOAD_FOLDER = './uploads'
-    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    _ADMIN_PASSWORD = 'admin'
+    _UPLOAD_FOLDER = './uploads'
+    _ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+    
+    app.config['UPLOAD_FOLDER'] = _UPLOAD_FOLDER
     app.secret_key = os.urandom(24)
-    app.run(host=_HOST, debug=True)
+    app.run(host=_HOST, port=_PORT, debug=_DEBUG)
 
