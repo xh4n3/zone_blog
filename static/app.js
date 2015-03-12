@@ -1,9 +1,3 @@
-//angular.module('markdown',[]).config(function (markdownProvider) {
-//    markdownProvider.config({
-//        extensions: ['table']
-//    });
-//});
-
 var zoneApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
@@ -61,35 +55,30 @@ zoneApp.factory('searchMusic', function ($http, $q) {
     return service;
 });
 zoneApp.factory('getPost', function ($http, $q) {
-    var _postid = '';
-    var _pageid = '';
     var service = {};
-    service.setPostid = function (postid) {
-        _postid = postid;
-    };
-    service.setPageId = function (pageid) {
-        _pageid = pageid;
-    };
-    service.get = function () {
+    service.getByPostId = function (postid) {
         var deferred = $q.defer();
-        if (_postid === '') {
-            if (_pageid) {
-                $http.get('/post/json/' + _pageid)
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(function () {
-                        deferred.reject('cannot get all post');
-                    });
-            }
-        } else {
-            $http.get('/post/' + _postid)
+        if (postid) {
+            $http.get('/post/' + postid)
                 .success(function (data) {
                     deferred.resolve(data);
                 }).error(function () {
                     deferred.reject('cannot get post with this id');
                 })
         };
+        return deferred.promise;
+    };
+    service.getByPageId = function (pageid) {
+        var deferred = $q.defer();
+        if (pageid) {
+            $http.get('/post/json/' + pageid)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function () {
+                    deferred.reject('cannot get all post');
+                });
+        }
         return deferred.promise;
     };
     return service;

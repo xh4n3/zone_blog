@@ -36,7 +36,7 @@
     </div>
     <div class="thirteen wide computer only column">
         <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
-            <h1 class="ui center aligned header font color">[[ post.title ]]</h1>
+            <h1 class="ui header font color">[[ post.title ]]</h1>
             <div class="resizing" id="homepost" ng-bind-html="post.body | markdown">
             </div>
             <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
