@@ -79,10 +79,14 @@ zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope,
         if (status == 'black lock') {
             $http.get('/post/unlock/' + postid).success(function () {
                 $route.reload()
+            }).error(function (data) {
+                alert(data);
             })
         } else {
             $http.get('/post/lock/' + postid).success(function () {
                 $route.reload()
+            }).error(function (data) {
+                alert(data);
             })
         }
     };
@@ -173,25 +177,13 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                 $scope.body = $scope.body + '<mark>mark</mark>';
                 break;
             case 'code':
-                $scope.body = $scope.body + '```\n```';
+                $scope.body = $scope.body + '```\ncode\n```';
                 break;
             default:
                 break;
-
             }
 
         };
 
     }
 ]);
-
-(function (angular) {
-    "use strict";
-    $(function SetMomentLocale() {
-        var language = navigator.language || navigator.userLanguage;
-        language = language.substr(0, 2);
-        if (language == "zh") {
-            moment.locale("zh-cn");
-        }
-    });
-})(window.angular);

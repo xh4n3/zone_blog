@@ -24,6 +24,8 @@
 }
 
 pre {
+    /* for markdown pre */
+    
     font-family: 'Consolas', 'Panic Sans', 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei', monospace;
     font-size: 13px;
     letter-spacing: 0.015em;
@@ -37,6 +39,8 @@ pre {
 }
 
 code {
+    /* for markdown code */
+    
     font-family: Courier, 'New Courier', monospace !important;
     font-size: 12px !important;
     color: #000c27 !important;
@@ -44,20 +48,24 @@ code {
 }
 
 #homepost p img {
-    /* post body */
+    /* for images in homepage post body */
+    
     max-height: 15rem !important;
     width: auto !important;
-    display:block !important;
+    display: block !important;
     margin-right: auto !important;
     margin-left: auto !important;
 }
 
 #homepost p {
-color: #777 !important;
+    /* setting color for homepage posts */
+    
+    color: #777 !important;
 }
 
 #showpost p img {
     /* post body */
+    
     max-width: 100%;
     height: auto;
 }
@@ -67,6 +75,8 @@ color: #777 !important;
 }
 
 .field .ui.icon.buttons {
+    /* buttons on editor */
+    
     display: inline-block;
     float: right;
     margin: 0 0;
@@ -107,10 +117,11 @@ hr {
     padding: 0;
 }
 
-a {
+#homepost p a {
     line-height: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+    color: #47AFD5 !important;
 }
 
 .inline {

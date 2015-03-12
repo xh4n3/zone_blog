@@ -20,7 +20,11 @@ zoneApp.config(['$routeProvider',
               function ($routeProvider) {
         $routeProvider.
         when('/', {
-            templateUrl: 'home',
+            templateUrl: '/home',
+            controller: 'homepageCtrl'
+        }).
+        when('/page/:pageid', {
+            templateUrl: '/home',
             controller: 'homepageCtrl'
         }).
         when('/post/id/:postid', {

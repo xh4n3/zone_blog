@@ -15,7 +15,8 @@ from bson import json_util
 from werkzeug import secure_filename
 
 app = Flask(__name__)
-    
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -31,10 +32,16 @@ def postshow():
     return render_template('postshow.html')
 
 
-@app.route('/post/json', methods=['GET'])
-def post_json():
-    return c_articles.objects(lock='green unlock'
-                              ).order_by('-created_at').all().to_json()
+@app.route('/post/json/<pageid>', methods=['GET'])
+def post_json(pageid):
+    try:
+        pageid = int(pageid)
+    except ValueError:
+        pageid = 1
+    finally:
+        return c_articles.objects(lock='green unlock'
+                              ).order_by('-created_at')[(pageid - 1)
+        * _POST_PER_PAGE:pageid * _POST_PER_PAGE].all().to_json()
 
 
 @app.route('/admin')
@@ -107,9 +114,11 @@ def post_update(postid):
         return 'Post ' + postid + ' modified'
     return 'not allowed'
 
+
 @app.route('/uploads/<imgname>')
 def get_image(imgname):
     return send_from_directory(app.config['UPLOAD_FOLDER'], imgname)
+
 
 @app.route('/post/upload', methods=['POST'])
 def post_upload():
@@ -121,9 +130,8 @@ def post_upload():
                 + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],
                       filename))
-            return url_for('get_image',imgname=filename)
+            return url_for('get_image', imgname=filename)
     return 'not allowed'
-
 
 
 @app.route('/post/delete/<postid>')
@@ -165,10 +173,11 @@ def search_json():
 if __name__ == '__main__':
     _ADMIN_PASSWORD = 'admin'
     _HOST = '127.0.0.1'
+    _POST_PER_PAGE = 5
 
     UPLOAD_FOLDER = './uploads'
     ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.secret_key = os.urandom(24)
-    app.run(host=_HOST,debug=True)
+    app.run(host=_HOST, debug=True)
 
