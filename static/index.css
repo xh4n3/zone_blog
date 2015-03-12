@@ -23,21 +23,17 @@
     color: #BDBDBD !important;
 }
 
-.post img {
-    /* not showing imgs on homepage*/
-    
-    width: 60%;
-    height: auto;
-    display: none;
-}
-
 pre {
-    white-space: pre-wrap !important;
-    white-space: -moz-pre-wrap !important;
-    white-space: -o-pre-wrap !important;
-    word-wrap: break-word !important;
+    font-family: 'Consolas', 'Panic Sans', 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei', monospace;
+    font-size: 13px;
+    letter-spacing: 0.015em;
+    line-height: 120%;
+    padding: 0.5em;
+    margin: 0px;
+    white-space: pre;
+    overflow-x: auto;
+    overflow-y: auto;
     background-color: #efedef !important;
-    width: inherit !important;
 }
 
 code {
@@ -47,13 +43,28 @@ code {
     display: inline !important;
 }
 
-img {
-    /* in case of overflowing in markdown */
-    
-    width: 50%;
+#homepost p img {
+    /* post body */
+    max-height: 15rem !important;
+    width: auto !important;
+    display:block !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+#homepost p {
+color: #777 !important;
+}
+
+#showpost p img {
+    /* post body */
+    max-width: 100%;
     height: auto;
 }
 
+#showpost p {
+    display: block;
+}
 
 .field .ui.icon.buttons {
     display: inline-block;
