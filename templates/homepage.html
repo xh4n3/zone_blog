@@ -1,10 +1,23 @@
 <div class="ui grid page">
     <div class="three wide computer only column">
-        <div class="row">
-            <br>
-            <br>
+        <div class="homepage_menu row">
+            <div class="ui vertical text menu">
+                <div class="item">xh4n3</div>
+                <a class="active item">
+                    <i class="home icon"></i> home
+                </a>
+                <a class="item">
+                    <i class="archive icon"></i> archive
+                </a>
+                <a class="item">
+                    <i class="child icon"></i> about
+                </a>
+                <a class="item" ng-click="showmusic=!showmusic">
+                    <i class="heartbeat icon"></i> music
+                </a>
+            </div>
         </div>
-        <div class="row">
+        <div class="row" ng-show="showmusic">
             <div class="ui form">
                 <input type="text" ng-model="keyword" ng-keypress="search($event)" placeholder="Music...">
             </div>
@@ -36,7 +49,9 @@
     </div>
     <div class="thirteen wide computer only column">
         <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
-            <h1 class="ui header font color">[[ post.title ]]</h1>
+            <a href="#/post/id/[[ post._id['$oid'] ]]">
+                <h1 id="homepage_title" class="ui header font color">[[ post.title ]]</h1>
+            </a>
             <div class="resizing" id="homepost" ng-bind-html="post.body | markdown">
             </div>
             <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>

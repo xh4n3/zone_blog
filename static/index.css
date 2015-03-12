@@ -23,6 +23,9 @@
     color: #BDBDBD !important;
 }
 
+#homepage_title {
+    margin-bottom: 2rem !important;
+}
 pre {
     /* for markdown pre */
     
@@ -71,6 +74,7 @@ code {
     display: block;
 }
 
+
 .field .ui.icon.buttons {
     /* buttons on editor */
     
@@ -91,7 +95,7 @@ audio {
     /* for preview on homepage */
     
     overflow: hidden !important;
-    max-height: 15rem !important;
+    max-height: 25rem !important;
     line-height: 1rem !important;
 }
 
@@ -129,6 +133,11 @@ hr {
     line-height: 2rem;
 }
 
+.homepage_menu {
+
+    margin-top: 10rem !important;
+}
+
 body {
     background-color: #faf9f6 !important;
 }
@@ -151,9 +160,6 @@ body {
     bottom: 1rem !important;
 }
 
-.stuck {
-    /* for sticky editor */
-    
-    position: fixed;
-    top: 0;
+.editor {
+    width: 40% !important;
 }

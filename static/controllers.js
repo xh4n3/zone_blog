@@ -5,6 +5,7 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$routeParams', 'getPost
         $scope.keyword = '';
         $scope.songurl = '';
         $scope.nextpage = false;
+        $scope.showmusic= false;
 
 
         if (parseInt($routeParams.pageid) > 0) {

@@ -1,9 +1,3 @@
-//angular.module('markdown', []).config(function (markdownProvider) {
-//    markdownProvider.config({
-//        extensions: ['table']
-//    });
-//});
-
 var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
