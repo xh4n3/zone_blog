@@ -62,20 +62,26 @@ zoneApp.factory('searchMusic', function ($http, $q) {
 });
 zoneApp.factory('getPost', function ($http, $q) {
     var _postid = '';
+    var _pageid = '';
     var service = {};
     service.setPostid = function (postid) {
         _postid = postid;
     };
+    service.setPageId = function (pageid) {
+        _pageid = pageid;
+    };
     service.get = function () {
         var deferred = $q.defer();
         if (_postid === '') {
-            $http.get('/post/json')
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function () {
-                    deferred.reject('cannot get all post');
-                });
+            if (_pageid) {
+                $http.get('/post/json/' + _pageid)
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    })
+                    .error(function () {
+                        deferred.reject('cannot get all post');
+                    });
+            }
         } else {
             $http.get('/post/' + _postid)
                 .success(function (data) {

@@ -1,27 +1,33 @@
 var zoneCtrl = angular.module('zoneCtrl', []);
 
-zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$routeParams', 'searchMusic',
-    function ($scope, $http, $routeParams, searchMusic) {
+zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$routeParams', 'getPost', 'searchMusic',
+    function ($scope, $http, $routeParams, getPost, searchMusic) {
         $scope.keyword = '';
         $scope.songurl = '';
+        $scope.nextpage = false;
 
         if (parseInt($routeParams.pageid) > 0) {
-            console.log(parseInt($routeParams.pageid));
             $scope.pageid = parseInt($routeParams.pageid);
         } else {
             $scope.pageid = 1;
         };
 
-        $http.get('/post/json/' + $scope.pageid).success(function (data) {
+        getPost.setPageId($scope.pageid);
+        getPost.get().then(function (data) {
             $scope.posts = data;
+        }, function (data) {
+            alert(data);
         });
-
-        $http.get('/post/json/' + ($scope.pageid + 1)).success(function (data) {
+        
+        /* test if page+1 doesnt exist */
+        getPost.setPageId($scope.pageid + 1);
+        getPost.get().then(function (data) {
             if (data.length) {
-                $scope.maxpage = $scope.pageid + 1;
+                $scope.nextpage = true;
             }
+        }, function (data) {
+            alert(data);
         });
-        /* isnot very efficient */
 
 
         $scope.search = function (event) {
