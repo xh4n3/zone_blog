@@ -16,9 +16,10 @@ This blog is based on **flask**, **mongodb** and **angularjs**.
 ### Todo List
 
 * Disqus is not working idealy with angularjs
-* Admin editor isn't following user's screen, 'sticky' should be added
-* Homepage UI, especially sidebar
 * Timezone issue with moment
-* Photo upload in editor
-* Setting admin password elsewhere
+* ~~XSS discovered in markdown plugin, to be fixed~~
+* ~~Admin editor isn't following user's screen, 'sticky' should be added~~
+* ~~Homepage UI, especially sidebar~~
+* ~~Photo upload in editor~~
+* ~~Setting admin password elsewhere~~
 * 

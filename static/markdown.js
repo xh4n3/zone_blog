@@ -1,4 +1,4 @@
-angular.module('markdown', [])
+angular.module('markdown', ['ngSanitize'])
     .provider('markdown', function () {
         var opts = {};
         return {
@@ -10,10 +10,10 @@ angular.module('markdown', [])
             }
         };
     })
-    .filter('markdown', ['$sce', 'markdown', function ($sce, markdown) {
+    .filter('markdown', ['markdown', function (markdown) {
         return function (text) {
             if(text == null) text = '';
             var html = markdown.makeHtml(text);
-            return $sce.trustAsHtml(html);
+            return html;
         };
     }]);
