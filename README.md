@@ -4,6 +4,10 @@ This blog is based on **flask**, **mongodb** and **angularjs**.
 
 -
 
+### Temporarily example
+
+[zone_blog](http://www.justlearn.science)
+
 ### Dependencies
 
 
