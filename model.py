@@ -8,7 +8,7 @@ class c_articles(Document):
     category = StringField(required=True)
     body = StringField(required=True)
     lock = StringField(max_length=20, required=True)
-    created_at = DateTimeField(default=datetime.datetime.now)
+    modified_at = DateTimeField(default=datetime.datetime.now)
     comments = ListField(EmbeddedDocumentField('c_comment'))
 
 class c_log(Document):

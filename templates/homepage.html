@@ -6,7 +6,7 @@
     </div>
     <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
     <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
-    <h5 class="ui right aligned header font color inline readmore">[[ post.created_at['$date'] | fromNow ]]</h5>
+    <h5 class="ui right aligned header font color inline readmore">[[ post.modified_at['$date'] | fromNow ]]</h5>
     <hr/>
 </div>
 <div class="ui borderless pagination menu">

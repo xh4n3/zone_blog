@@ -40,7 +40,7 @@ def post_json(pageid):
         pageid = 1
     finally:
         return c_articles.objects(lock='green unlock'
-                                  ).order_by('-created_at')[(pageid
+                                  ).order_by('-modified_at')[(pageid
                 - 1) * _POST_PER_PAGE:pageid
             * _POST_PER_PAGE].all().to_json()
 
@@ -87,7 +87,7 @@ def post_content(postid):
 @app.route('/post/list', methods=['GET'])
 def post_list():
     if 'admin' in session:
-        return c_articles.objects().order_by('-created_at'
+        return c_articles.objects().order_by('-modified_at'
                 ).all().to_json()
     return 'not allowed'
 
@@ -97,7 +97,6 @@ def post_save():
     if 'admin' in session:
         rawcontent = request.data
         content = json.loads(rawcontent)
-
         c_articles(content['title'], content['category'], content['body'
                    ], 'green unlock').save()
         return 'success'
@@ -111,7 +110,7 @@ def post_update(postid):
         content = json.loads(rawcontent)
         c_articles.objects(id=postid).update(set__title=content['title'
                 ], set__category=content['category'],
-                set__body=content['body'])
+                set__body=content['body'],set__modified_at=datetime.datetime.now)
         return 'Post ' + postid + ' modified'
     return 'not allowed'
 
