@@ -133,6 +133,17 @@ def post_upload():
             return url_for('get_image', imgname=filename)
     return 'not allowed'
 
+@app.route('/post/paste', methods=['POST'])
+def post_paste():
+    if 'admin' in session:
+        file = request.files['file']
+        if file:
+            filename = str(int(time.time() * 100)) + '.' \
+                + 'jpg'
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],
+                      filename))
+            return url_for('get_image', imgname=filename)
+    return 'not allowed'
 
 @app.route('/post/delete/<postid>')
 def post_delete(postid):

@@ -119,6 +119,41 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
             }
 
         };
+        $scope.paste = function (event) {
+            console.log(event);
+            console.log(event.originalEvent);
+            var clipData = event.originalEvent.clipboardData;
+            console.log(clipData.types);
+            //console.log(clipData.getData("Text"));
+            var pastetext = "";
+            angular.forEach(clipData.items, function (item, key) {
+                console.log({
+                    item: item,
+                    key: key
+                });
+                console.log(clipData.items[key]);
+                console.log(clipData.items[key]['type']);
+                if (clipData.items[key]['type'].match(/image.*/)) {
+                    console.log('image!!');
+                    var img = clipData.items[key].getAsFile();
+                    console.log(img);
+                    var fd = new FormData();
+                    fd.append('file', img);
+                    $http.post("/post/paste", fd, {
+                        transformRequest: angular.identity,
+                        headers: {
+                            'Content-Type': undefined
+                        }
+                    }).success(function (url) {
+                        $scope.body = $scope.body + '![PICTURE](' + url + ')';
+                    }).error(function (data) {
+                        alert(data);
+                    });
+                };
 
-    }
+            });
+            $scope.body = $scope.body + pastetext;
+        };
+        }
+
 ]);
