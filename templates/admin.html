@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="zoneAdmin">
+<html>
 
 <head>
     <title>Admin | xh4n3</title>
@@ -17,11 +17,11 @@
     <script src="{{ url_for('static', filename='markdown.js') }}"></script>
 </head>
 
-<body>
+<body ng-app="zoneAdmin">
     <div class="ui grid page">
         <div class="row"></div>
         <div class="ten wide column">
-            <a class="ui red header" href="#/">Admin Panel</a>
+            <a class="ui red header" ng-href="#/">Admin Panel</a>
         </div>
     </div>
     <div ng-view></div>

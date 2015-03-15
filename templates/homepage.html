@@ -1,10 +1,10 @@
 <div ng-repeat="post in posts" ng-mouseenter="readmore=true" ng-mouseleave="readmore=false">
-    <a href="#/post/id/[[ post._id['$oid'] ]]">
+    <a ng-href="#/post/id/[[ post._id['$oid'] ]]">
         <h1 id="homepage_title" class="ui header font color">[[ post.title ]]</h1>
     </a>
     <div class="resizing" id="homepost" ng-bind-html="post.body | markdown">
     </div>
-    <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
+    <h5 class="ui center aligned header font color readmore"><a ng-show="!readmore">&nbsp;</a><a ng-show="readmore" ng-href="#/post/id/[[ post._id['$oid'] ]]">read more</a></h5>
     <h5 class="ui left aligned font color inline readmore"><i class="small [[ post.category ]] icon"></i></h5>
     <h5 class="ui right aligned header font color inline readmore">[[ post.modified_at['$date'] | fromNow ]]</h5>
     <hr/>

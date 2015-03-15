@@ -2,10 +2,10 @@
     <div class="row"></div>
     <div class="computer tablet only row">
         <div class="eight wide column">
-            <a href="#/post/new"><i class="ui add square icon"></i>New Post</a>
+            <a ng-href="#/post/new"><i class="ui add square icon"></i>New Post</a>
         </div>
         <div class="two wide column right aligned">
-            <a href="/admin/logout"><i class="ui sign out icon"></i>Exit</a>
+            <a ng-href="/admin/logout"><i class="ui sign out icon"></i>Exit</a>
         </div>
     </div>
     <div class="computer tablet only ten wide column">
@@ -15,11 +15,11 @@
                     <td class="collapsing">
                         <i title="[[ post.category ]]" class="ui [[ post.category ]] icon"></i>
                     </td>
-                    <td><a href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
+                    <td><a ng-href="#/post/id/[[ post._id['$oid'] ]]" class="font">[[ post.title ]]</a>
                     </td>
                     <td class="right aligned">
                         <span ng-if="show">
-                            <a title="edit" href="#/post/edit/[[ post._id['$oid'] ]]">
+                            <a title="edit" ng-href="#/post/edit/[[ post._id['$oid'] ]]">
                                 <i class="ui blue link edit icon"></i>
                             </a>
                             <a title="delete" ng-click="delete([[ post._id['$oid'] ]])">

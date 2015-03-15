@@ -21,13 +21,13 @@
     <div class="ui page grid">
         <div class="computer only row"></div>
         <div class="computer only row">
-            <a class="computer_logo" href="#/">
+            <a class="computer_logo" ng-href="#/">
                 <h1 class="ui header">Zone</h1>
                 <h5 class="ui header">beta</h5>
             </a>
         </div>
         <div class="tablet mobile only row">
-            <a href="#{{ url_for('index') }}" class="tablet_mobile ten wide centered center aligned column">
+            <a ng-href="#{{ url_for('index') }}" class="tablet_mobile ten wide centered center aligned column">
                 <h1 class="ui header">Zone</h1>
                 <h5 class="ui header">beta</h5>
             </a>
@@ -37,7 +37,7 @@
         <div class="three wide computer only column">
             <div class="homepage_menu row ui fixed sticky">
                 <div class="ui vertical text menu">
-                    <a class="item" href="#/">
+                    <a class="item" ng-href="#/">
                         <i class="home icon"></i> home
                     </a>
                     <a class="item">
@@ -86,7 +86,7 @@
     <div class="ui page grid bottom">
         <div class="row">
             <div class="ui four wide column">
-                <a href="https://github.com/xh4n3" class="font color">
+                <a ng-href="https://github.com/xh4n3" class="font color">
                     <i class="github square icon">&nbsp;xh4n3</i>
                 </a>
             </div>
