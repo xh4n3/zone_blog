@@ -99,24 +99,31 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                 alert(data);
             });
         };
+        $scope.onchange = function (element) {
+            //console.log(element.selectionStart);
+            //console.log('success');
+            $scope.pos = element.selectionStart;
+        };
         $scope.insert = function (item) {
-            console.log(item);
+            var toInsert = '';
             switch (item) {
             case 'bold':
-                $scope.body = $scope.body + '**bold**';
+                toInsert = '**bold**';
                 break;
             case 'linkify':
-                $scope.body = $scope.body + '[title](http://url.com)';
+                toInsert = '[title](http://url.com)';
                 break;
             case 'mark':
-                $scope.body = $scope.body + '<mark>mark</mark>';
+                toInsert = '<mark>mark</mark>';
                 break;
             case 'code':
-                $scope.body = $scope.body + '```\ncode\n```';
+                toInsert = '\n```\ncode\n```\n';
                 break;
             default:
                 break;
             }
+            $scope.body = $scope.body.slice(0, $scope.pos) + toInsert + $scope.body.slice($scope.pos);
+            $scope.pos = $scope.pos + toInsert.length;
 
         };
         $scope.paste = function (event) {
@@ -141,7 +148,7 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                             'Content-Type': undefined
                         }
                     }).success(function (url) {
-                        $scope.body = $scope.body + '\n![PICTURE](' + url + ')';
+                        $scope.body = $scope.body.slice(0, $scope.pos) + '\n![PICTURE](' + url + ')' + $scope.body.slice($scope.pos);
                     }).error(function (data) {
                         alert(data);
                     });

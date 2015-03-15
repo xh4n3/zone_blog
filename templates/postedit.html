@@ -40,7 +40,7 @@
                     <div ng-show="uploading">
                         <input type="file" onchange="angular.element(this).scope().upload(this);" />
                     </div>
-                    <textarea ng-model="body" ng-paste="paste($event)"></textarea>
+                    <textarea ng-model="body" onchange="angular.element(this).scope().onchange(this);" ng-paste="paste($event)"></textarea>
                 </div>
                 <div class="ui primary button" ng-click="post()">
                     Save
