@@ -81,7 +81,9 @@ def admin_logout():
 
 @app.route('/post/<postid>')
 def post_content(postid):
-    return c_articles.objects(id=postid).all().to_json()
+    if 'admin' in session:
+        return c_articles.objects(id=postid).all().to_json()
+    return c_articles.objects(id=postid,lock=0).all().to_json()
 
 
 @app.route('/post/list', methods=['GET'])
