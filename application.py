@@ -29,7 +29,7 @@ def homepage():
 
 @app.route('/post/show')
 def postshow():
-    return render_template('postshow.html')
+    return render_template('postshow.html',disqus_shortname = _DISQUS_SHORTNAME)
 
 
 @app.route('/post/json/<pageid>', methods=['GET'])
@@ -189,6 +189,7 @@ if __name__ == '__main__':
     _ADMIN_PASSWORD = 'admin'
     _UPLOAD_FOLDER = './uploads'
     _ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+    _DISQUS_SHORTNAME = 'xh4n3'
     
     app.config['UPLOAD_FOLDER'] = _UPLOAD_FOLDER
     app.secret_key = os.urandom(24)
