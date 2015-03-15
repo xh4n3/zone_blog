@@ -11,7 +11,7 @@ zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope,
     });
 
     $scope.lock = function (postid, status) {
-        if (status == 'black lock') {
+        if (status == '1') {
             $http.get('/post/unlock/' + postid).success(function () {
                 $route.reload()
             }).error(function (data) {

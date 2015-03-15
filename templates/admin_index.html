@@ -27,12 +27,12 @@
                                 <i ng-if="deleting" class="help link red loading icon"></i>
                             </a>
                                                         <a title="lock" ng-click="lock([[ post._id['$oid'] ]],[[ post.lock ]])">
-                                <i class="ui link [[ post.lock ]] icon"></i>
+                                <i ng-class="{ green:post.lock==1, black: post.lock==0, lock:post.lock==0, unlock:post.lock==1, link:true,icon: true }"></i>
                             </a>
                         </span>
                         <span ng-if="!show">
-                            <a title="lock" ng-if="post.lock=='black lock'">
-                                <i class="ui link [[ post.lock ]] icon"></i>
+                            <a title="lock" ng-if="post.lock==1">
+                                <i class="black lock icon"></i>
                             </a>
                         </span>
                     </td>

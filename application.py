@@ -39,7 +39,7 @@ def post_json(pageid):
     except ValueError:
         pageid = 1
     finally:
-        return c_articles.objects(lock='green unlock'
+        return c_articles.objects(lock='0'
                                   ).order_by('-modified_at')[(pageid
                 - 1) * _POST_PER_PAGE:pageid
             * _POST_PER_PAGE].all().to_json()
@@ -98,7 +98,7 @@ def post_save():
         rawcontent = request.data
         content = json.loads(rawcontent)
         c_articles(content['title'], content['category'], content['body'
-                   ], 'green unlock').save()
+                   ], '0').save()
         return 'success'
     return 'not allowed'
 
@@ -156,7 +156,7 @@ def post_delete(postid):
 @app.route('/post/lock/<postid>')
 def post_lock(postid):
     if 'admin' in session:
-        c_articles.objects(id=postid).first().update(set__lock='black lock'
+        c_articles.objects(id=postid).first().update(set__lock='1'
                 )
         return 'success'
     return 'not allowed'
@@ -165,7 +165,7 @@ def post_lock(postid):
 @app.route('/post/unlock/<postid>')
 def post_unlock(postid):
     if 'admin' in session:
-        c_articles.objects(id=postid).first().update(set__lock='green unlock'
+        c_articles.objects(id=postid).first().update(set__lock='0'
                 )
         return 'success'
     return 'not allowed'
