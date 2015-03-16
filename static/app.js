@@ -17,6 +17,10 @@ zoneApp.config(['$routeProvider',
             templateUrl: '/home',
             controller: 'homepageCtrl'
         }).
+        when('/archive', {
+            templateUrl: '/archive',
+            controller: 'archiveCtrl'
+        }).
         when('/page/:pageid', {
             templateUrl: '/home',
             controller: 'homepageCtrl'
@@ -58,6 +62,7 @@ zoneApp.factory('getPost', function ($http, $q) {
     var service = {};
     service.getByPostId = function (postid) {
         var deferred = $q.defer();
+        console.log(postid);
         if (postid) {
             $http.get('/post/' + postid)
                 .success(function (data) {
@@ -70,7 +75,7 @@ zoneApp.factory('getPost', function ($http, $q) {
     };
     service.getByPageId = function (pageid) {
         var deferred = $q.defer();
-        if (pageid) {
+        if (pageid > -1) {
             $http.get('/post/json/' + pageid)
                 .success(function (data) {
                     deferred.resolve(data);

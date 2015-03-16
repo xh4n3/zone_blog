@@ -55,6 +55,22 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$sce', '$routeParams', 
 
   }]);
 
+zoneCtrl.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', 'getPost', 'searchMusic',
+    function ($scope, $http, $sce, $routeParams, getPost, searchMusic) {
+
+        $scope.initialization = function () {
+            getPost.getByPageId(0).then(function (data) {
+                $scope.posts = data;
+            }, function (data) {
+                alert(data);
+            });
+
+        };
+        $scope.initialization();
+
+
+  }]);
+
 zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', 'getPost', function ($scope, $routeParams, $http, getPost) {
     if ($routeParams.postid != null) {
         getPost.getByPostId($routeParams.postid).then(function (data) {

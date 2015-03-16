@@ -21,6 +21,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/archive')
+def archive():
+    return render_template('archive.html')
 
 @app.route('/home')
 def homepage():
@@ -39,10 +42,11 @@ def post_json(pageid):
     except ValueError:
         pageid = 1
     finally:
-        return c_articles.objects(lock='0'
-                                  ).order_by('-modified_at')[(pageid
-                - 1) * _POST_PER_PAGE:pageid
-            * _POST_PER_PAGE].all().to_json()
+        if pageid == 0:
+            return c_articles.objects(lock__ne='1'
+                                  ).order_by('-modified_at').all().to_json()
+        else:
+            return c_articles.objects(lock__ne='1').order_by('-modified_at')[(pageid- 1) * _POST_PER_PAGE:pageid* _POST_PER_PAGE].all().to_json()
 
 
 @app.route('/admin')
@@ -83,7 +87,8 @@ def admin_logout():
 def post_content(postid):
     if 'admin' in session:
         return c_articles.objects(id=postid).all().to_json()
-    return c_articles.objects(id=postid,lock=0).all().to_json()
+    else:
+        return c_articles.objects(Q(id=postid) & Q(lock__ne=1)).all().to_json()
 
 
 @app.route('/post/list', methods=['GET'])
