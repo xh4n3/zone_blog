@@ -36,7 +36,7 @@
                             </a>
                         </span>
                     </td>
-                    <td class="right aligned collapsing color">[[ post.modified_at['$date'] | fromNow ]]</td>
+                    <td class="right aligned collapsing color">[[ post.modified_at['$date'] | date:'MMM d, y hh:mm' ]]</td>
                 </tr>
             </tbody>
         </table>

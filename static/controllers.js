@@ -34,7 +34,7 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$sce', '$routeParams', 
             $scope.pageid = 1;
         };
 
-        $scope.initialization = function () {
+        var initialization = function () {
             getPost.getByPageId($scope.pageid).then(function (data) {
                 $scope.posts = data;
             }, function (data) {
@@ -50,23 +50,36 @@ zoneCtrl.controller('homepageCtrl', ['$scope', '$http', '$sce', '$routeParams', 
                 alert(data);
             });
         };
-        $scope.initialization();
-
+        initialization();
 
   }]);
 
 zoneCtrl.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', 'getPost', 'searchMusic',
     function ($scope, $http, $sce, $routeParams, getPost, searchMusic) {
-
-        $scope.initialization = function () {
+        var initialization = function () {
             getPost.getByPageId(0).then(function (data) {
-                $scope.posts = data;
+                console.log(data);
+                var cate = {};
+                angular.forEach(data, function (item, key) {
+                    console.log(item['category']);
+                    if (item['category'] in cate) {
+                        console.log(1);
+                        console.log(item['category']);
+                        cate[item['category']].push(item);
+                    } else {
+                        console.log(2);
+                        cate[item['category']] = [];
+                        cate[item['category']].push(item);
+                    };
+                });
+                console.log(cate);
+                $scope.archive = cate;
             }, function (data) {
                 alert(data);
             });
-
         };
-        $scope.initialization();
+        initialization();
+
 
 
   }]);

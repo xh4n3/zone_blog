@@ -1,13 +1,16 @@
-<div ng-repeat="post in posts">
-    <a ng-href="#/post/id/[[ post._id['$oid'] ]]">
-        <h1 id="homepage_title" class="ui header inline font color">
-            [[ post.title ]]
-        </h1>
-    </a>
-    <h5 class="ui right floated right aligned font color inline">
-        <i class="small [[ post.category ]] icon"></i>
+<div ng-repeat="category in archive">
+    <h5 class="ui right floated right aligned font inline">
+        <i class="small [[ category[0]['category'] ]] icon"></i>
+        [[ category[0]['category'] ]]
     </h5>
-    <h5 class="ui right floated right aligned font color inline">
-        [[ post.modified_at['$date'] | fromNow ]]</h5>
+    <div ng-repeat="post in category">
+        <a ng-href="#/post/id/[[ post._id['$oid'] ]]">
+            <h1 id="homepage_title" class="ui header inline font color">
+            [[ post.title ]]
+            </h1>
+        </a>
+        <h5 class="ui right floated right aligned grey inline">
+        [[ post.modified_at['$date'] | date:'MMM d, y hh:mm' ]]</h5>
+    </div>
     <hr/>
 </div>

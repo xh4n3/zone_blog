@@ -8,10 +8,10 @@
     color: #BDBDBD !important;
 }
 
-
 #homepage_title {
     margin-bottom: 2rem !important;
 }
+
 pre {
     /* for markdown pre */
     
@@ -26,6 +26,10 @@ pre {
     overflow-x: auto;
     overflow-y: auto;
     background-color: #efedef !important;
+}
+
+.grey {
+    color: #aaa !important;
 }
 
 code {
@@ -61,7 +65,6 @@ code {
     display: block;
 }
 
-
 .field .ui.icon.buttons {
     /* buttons on editor */
     
@@ -73,7 +76,6 @@ code {
 textarea {
     min-height: 25rem !important;
 }
-
 
 .resizing {
     /* for preview on homepage */
@@ -118,13 +120,13 @@ hr {
 }
 
 .homepage_menu {
-
     margin-top: 5rem !important;
 }
 
 .player {
     width: 10rem !important;
 }
+
 body {
     background-color: #faf9f6 !important;
 }
