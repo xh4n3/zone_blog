@@ -89,7 +89,7 @@ def post_content(postid):
         return c_articles.objects(id=postid).all().to_json()
     else:
         print "not admin"
-        return c_articles.objects(Q(id=postid) & Q(lock__exact=0)).all().to_json()
+        return c_articles.objects(Q(id=postid) & Q(lock__exact='0')).all().to_json()
 
 
 @app.route('/post/list', methods=['GET'])
