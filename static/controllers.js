@@ -58,21 +58,21 @@ zoneCtrl.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', '
     function ($scope, $http, $sce, $routeParams, getPost, searchMusic) {
         var initialization = function () {
             getPost.getByPageId(0).then(function (data) {
-                console.log(data);
+                //console.log(data);
                 var cate = {};
                 angular.forEach(data, function (item, key) {
-                    console.log(item['category']);
+                    //console.log(item['category']);
                     if (item['category'] in cate) {
-                        console.log(1);
-                        console.log(item['category']);
+                        //console.log(1);
+                        //console.log(item['category']);
                         cate[item['category']].push(item);
                     } else {
-                        console.log(2);
+                        //console.log(2);
                         cate[item['category']] = [];
                         cate[item['category']].push(item);
                     };
                 });
-                console.log(cate);
+                //console.log(cate);
                 $scope.archive = cate;
             }, function (data) {
                 alert(data);

@@ -43,10 +43,10 @@ def post_json(pageid):
         pageid = 1
     finally:
         if pageid == 0:
-            return c_articles.objects(lock__ne='1'
+            return c_articles.objects(lock__exact='0'
                                   ).order_by('-modified_at').all().to_json()
         else:
-            return c_articles.objects(lock__ne='1').order_by('-modified_at')[(pageid- 1) * _POST_PER_PAGE:pageid* _POST_PER_PAGE].all().to_json()
+            return c_articles.objects(lock__exact='0').order_by('-modified_at')[(pageid- 1) * _POST_PER_PAGE:pageid* _POST_PER_PAGE].all().to_json()
 
 
 @app.route('/admin')
@@ -88,7 +88,8 @@ def post_content(postid):
     if 'admin' in session:
         return c_articles.objects(id=postid).all().to_json()
     else:
-        return c_articles.objects(Q(id=postid) & Q(lock__ne=1)).all().to_json()
+        print "not admin"
+        return c_articles.objects(Q(id=postid) & Q(lock__exact=0)).all().to_json()
 
 
 @app.route('/post/list', methods=['GET'])

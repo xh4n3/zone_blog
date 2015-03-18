@@ -62,7 +62,7 @@ zoneApp.factory('getPost', function ($http, $q) {
     var service = {};
     service.getByPostId = function (postid) {
         var deferred = $q.defer();
-        console.log(postid);
+        //console.log(postid);
         if (postid) {
             $http.get('/post/' + postid)
                 .success(function (data) {
