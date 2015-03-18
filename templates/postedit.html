@@ -4,7 +4,7 @@
             <div class="ui form editor fixed sticky">
                 <div class="ui menu right floated">
                     <div class="ui simple dropdown item">
-                        <i class="[[ category ]] icon"></i> [[ category ]]
+                        <i class="[[ $storage.category ]] icon"></i> [[ $storage.category ]]
                         <div class="menu">
                             <div class="item" ng-click="select('heart')"><i class="heart icon"></i>heart</div>
                             <div class="item" ng-click="select('code')"><i class="code icon"></i>code</div>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="field">
                     <label>Title</label>
-                    <input type="text" autofocus value="" ng-model="title" />
+                    <input type="text" autofocus value="" ng-model="$storage.title" />
                 </div>
                 <div class="field">
                     <label>Body</label>
@@ -40,7 +40,7 @@
                     <div ng-show="uploading">
                         <input type="file" onchange="angular.element(this).scope().upload(this);" />
                     </div>
-                    <textarea ng-model="body" onchange="angular.element(this).scope().onchange(this);" ng-paste="paste($event)"></textarea>
+                    <textarea ng-model="$storage.body" onchange="angular.element(this).scope().onchange(this);" ng-paste="paste($event)"></textarea>
                 </div>
                 <div class="ui primary button" ng-click="post()">
                     Save
@@ -55,11 +55,11 @@
         <div class="ui vertical divider">></div>
         <div class="eight wide column">
             <div class="row">
-                <i class="[[ category ]] icon"></i>[[ category ]]&nbsp;&nbsp;
-                <span class="ui header huge font color">[[ title ]]</span>
+                <i class="[[ $storage.category ]] icon"></i>[[ $storage.category ]]&nbsp;&nbsp;
+                <span class="ui header huge font color">[[ $storage.title ]]</span>
             </div>
             <div class="ui horizantal divider"></div>
-            <div id="showpost" ng-bind-html="body | markdown"></div>
+            <div id="showpost" ng-bind-html="$storage.body | markdown"></div>
         </div>
     </div>
 </div>

@@ -5,11 +5,9 @@ zoneCtrl.controller('adminCtrl', ['$scope', '$http', '$route', function ($scope,
     $scope.songurl = '';
     $scope.deleting = false;
     $scope.uploading = false;
-
     $http.get('/post/list').success(function (data) {
         $scope.posts = data;
     });
-
     $scope.lock = function (postid, status) {
         if (status == '1') {
             $http.get('/post/unlock/' + postid).success(function () {
@@ -44,45 +42,50 @@ zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function
     })
 }]);
 
-
 zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', '$localStorage', '$sessionStorage', function ($scope, $window, $routeParams, $http, $localStorage, $sessionStorage) {
+
+        var resetStorage = function () {
+            $scope.$storage = $localStorage.$reset({
+                title: '',
+                body: '',
+                category: 'archive'
+            });
+        };
+
         if ($routeParams.postid) {
             $scope.postid = $routeParams.postid;
             $http.get('/post/' + $scope.postid).success(function (data) {
-                $scope.title = data[0]['title'];
-                $scope.body = data[0]['body'];
-                $scope.category = data[0]['category'];
+                $scope.$storage = {}; /* fake $storage as a object */
+                $scope.$storage.postid = $routeParams.postid;
+                $scope.$storage.title = data[0]['title'];
+                $scope.$storage.body = data[0]['body'];
+                $scope.$storage.category = data[0]['category'];
             });
         } else {
-            $scope.title = '';
-            $scope.body = '';
-            $scope.category = 'archive';
+            $scope.$storage = $localStorage; /* real storage defination */
+            if ($scope.$storage['body'] == '' && $scope.$storage['title'] == '') {
+                resetStorage(); /* reset function */
+            }
         };
+
         $scope.post = function () {
-            $http.post('/post/save' + ($routeParams.postid ? '/' + $scope.postid : ''), {
-                title: $scope.title,
-                category: $scope.category,
-                body: $scope.body
+            $http.post('/post/save' + ($routeParams.postid ? '/' + $routeParams.postid : ''), {
+                title: $scope.$storage.title,
+                category: $scope.$storage.category,
+                body: $scope.$storage.body
             }).success(function (data) {
                 $scope.status = data;
-            }).then($window.history.back())
+            }).then(resetStorage()).then(
+                $window.history.back()
+            )
         };
-        $scope.$storage = $localStorage.$reset(
-            {
-                postid: 0
-        });
 
-        console.log($scope.$storage);
-        if ($scope.$storage['postid']) {
-            console.log($scope.$storage['postid']);
-            console.log('in');
-
-        };
         $scope.discard = function () {
-            $window.history.back()
+            resetStorage();
+            $window.history.back();
         };
         $scope.select = function (cate) {
-            $scope.category = cate;
+            $scope.$storage.category = cate;
         };
 
         $scope.upload = function (element) {
@@ -94,17 +97,19 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                     'Content-Type': undefined
                 }
             }).success(function (url) {
-                $scope.body = $scope.body + '![PICTURE](' + url + ')';
+                $scope.$storage.body = $scope.$storage.body + '![PICTURE](' + url + ')';
                 $scope.uploading = false;
             }).error(function (data) {
                 alert(data);
             });
         };
+
         $scope.onchange = function (element) {
             //console.log(element.selectionStart);
             //console.log('success');
             $scope.pos = element.selectionStart;
         };
+
         $scope.insert = function (item) {
             var toInsert = '';
             switch (item) {
@@ -123,9 +128,8 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
             default:
                 break;
             }
-            $scope.body = $scope.body.slice(0, $scope.pos) + toInsert + $scope.body.slice($scope.pos);
+            $scope.$storage.body = $scope.$storage.body.slice(0, $scope.pos) + toInsert + $scope.$storage.body.slice($scope.pos);
             $scope.pos = $scope.pos + toInsert.length;
-
         };
         $scope.paste = function (event) {
             //console.log(event);
@@ -149,7 +153,7 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                             'Content-Type': undefined
                         }
                     }).success(function (url) {
-                        $scope.body = $scope.body.slice(0, $scope.pos) + '\n![PICTURE](' + url + ')' + $scope.body.slice($scope.pos);
+                        $scope.$storage.body = $scope.$storage.body.slice(0, $scope.pos) + '\n![PICTURE](' + url + ')' + $scope.$storage.body.slice($scope.pos);
                     }).error(function (data) {
                         alert(data);
                     });
@@ -157,6 +161,6 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
 
             });
         };
-        }
+}
 
 ]);
