@@ -45,7 +45,7 @@ zoneCtrl.controller('postshowCtrl', ['$scope', '$routeParams', '$http', function
 }]);
 
 
-zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', function ($scope, $window, $routeParams, $http) {
+zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http', '$localStorage', '$sessionStorage', function ($scope, $window, $routeParams, $http, $localStorage, $sessionStorage) {
         if ($routeParams.postid) {
             $scope.postid = $routeParams.postid;
             $http.get('/post/' + $scope.postid).success(function (data) {
@@ -53,30 +53,31 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
                 $scope.body = data[0]['body'];
                 $scope.category = data[0]['category'];
             });
-            $scope.post = function () {
-                $http.post('/post/save/' + $scope.postid, {
-                    title: $scope.title,
-                    category: $scope.category,
-                    body: $scope.body
-                }).success(function (data) {
-                    $scope.status = data;
-                }).then($window.history.back())
-            };
         } else {
             $scope.title = '';
             $scope.body = '';
             $scope.category = 'archive';
-            $scope.post = function () {
-                $http.post('/post/save', {
-                    title: $scope.title,
-                    category: $scope.category,
-                    body: $scope.body
-                }).success(function (data) {
-                    $scope.status = data;
-                }).then($window.history.back())
-            };
         };
+        $scope.post = function () {
+            $http.post('/post/save' + ($routeParams.postid ? '/' + $scope.postid : ''), {
+                title: $scope.title,
+                category: $scope.category,
+                body: $scope.body
+            }).success(function (data) {
+                $scope.status = data;
+            }).then($window.history.back())
+        };
+        $scope.$storage = $localStorage.$reset(
+            {
+                postid: 0
+        });
 
+        console.log($scope.$storage);
+        if ($scope.$storage['postid']) {
+            console.log($scope.$storage['postid']);
+            console.log('in');
+
+        };
         $scope.discard = function () {
             $window.history.back()
         };
