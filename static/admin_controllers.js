@@ -63,7 +63,7 @@ zoneCtrl.controller('posteditCtrl', ['$scope', '$window', '$routeParams', '$http
             });
         } else {
             $scope.$storage = $localStorage; /* real storage defination */
-            if ($scope.$storage['body'] == '' && $scope.$storage['title'] == '') {
+            if ( !('body' in $scope.$storage)) {
                 resetStorage(); /* reset function */
             }
         };
