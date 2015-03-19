@@ -1,4 +1,4 @@
-var zoneApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'markdown'], function ($interpolateProvider) {
+var zoneApp = angular.module('zoneApp', ['ngRoute', 'zoneCtrl', 'ngSanitize', 'markdown'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });

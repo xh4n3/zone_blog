@@ -1,4 +1,4 @@
-var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'markdown', 'ngStorage'], function ($interpolateProvider) {
+var zoneAdmin = angular.module('zoneAdmin', ['ngRoute', 'zoneCtrl', 'ngSanitize', 'markdown', 'ngStorage'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });
