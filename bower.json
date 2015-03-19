@@ -1,0 +1,20 @@
+{
+    "name": "zone_blog",
+    "version": "1.0.0",
+    "homepage": "https://github.com/Xh4n3/blog",
+    "authors": [
+    "xh4n3"
+  ],
+    "description": "Another blog based on flask, mongodb and angularjs",
+    "keywords": [
+    "angular"
+  ],
+    "license": "GPLv3",
+    "private": true,
+    "dependencies": {
+        "angular": ">=1.2.*",
+        "showdown": "~0.3.1",
+        "angular-markdown-filter":"#1.2.0"
+    }
+
+}
