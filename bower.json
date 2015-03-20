@@ -1,20 +1,27 @@
 {
-    "name": "zone_blog",
-    "version": "1.0.0",
-    "homepage": "https://github.com/Xh4n3/blog",
-    "authors": [
+  "name": "zone_blog",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Xh4n3/blog",
+  "authors": [
     "xh4n3"
   ],
-    "description": "Another blog based on flask, mongodb and angularjs",
-    "keywords": [
+  "description": "Another blog based on flask, mongodb and angularjs",
+  "keywords": [
     "angular"
   ],
-    "license": "GPLv3",
-    "private": true,
-    "dependencies": {
-        "angular": ">=1.2.*",
-        "showdown": "~0.3.1",
-        "angular-markdown-filter":"#1.2.0"
-    }
-
+  "license": "GPLv3",
+  "private": true,
+  "dependencies": {
+    "angular": "#1.4.0-build.3923+sha.f8c8cf6",
+    "showdown": "~0.3.1",
+    "angular-markdown-filter": "#1.2.0",
+    "angular-sanitize": "#1.4.0-build.3923+sha.f8c8cf6",
+    "angular-route": "#1.4.0-build.3923+sha.f8c8cf6",
+    "moment": "#2.9.0",
+    "jQuery": "#2.1.3",
+    "ngstorage": "#0.3.0"
+  },
+  "resolutions": {
+    "angular": "#1.4.0-build.3923+sha.f8c8cf6"
+  }
 }

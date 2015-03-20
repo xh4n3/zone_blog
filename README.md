@@ -10,10 +10,17 @@ This blog is based on **flask**, **mongodb** and **angularjs**.
 
 ### Dependencies
 
-
 * flask
 * mongoengine
 * mongodb
+
+### Install
+
+```
+bower install
+
+```
+
 
 -
 
